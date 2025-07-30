@@ -1,0 +1,2718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Blog Developing process</title>
+    <url>/posts/1.html</url>
+    <content><![CDATA[个人博客网站开发规划Exported on 2025&#x2F;7&#x2F;27 at GMT+8 18:21:39 from Cursor (1.2.1)
+
+User
+我打算制作一个个人博客网站，下面是完整的个人博客开发计划，请你结合下面的开发计划，首先对该个人博客网站开发做一个完整的规划，等待我同意后再开始具体进行开发。
+一、项目目标
+使用 Hexo 框架和 NexT 主题，初始化并配置一个静态个人博客。项目最终配置为通过 Git 一键部署到 GitHub Pages。
+二、技术栈
+框架: Hexo
+主题: Hexo Theme NexT
+运行环境: Node.js
+版本控制 &amp; 部署: Git &amp; GitHub Pages
+评论系统: Giscus (基于 GitHub Discussions)
+内容格式: Markdown
+三、执行步骤
+步骤 1：环境初始化与项目创建
+执行以下命令，完成 Hexo 环境安装和项目初始化。
+Generated bash
+1. 全局安装 Hexo-CLInpm install hexo-cli -g
+2. 初始化博客项目并进入目录hexo init personal-blog &amp;&amp; cd personal-blog
+3. 安装项目依赖npm install
+步骤 2：安装并启用 NexT 主题
+执行以下命令，下载 NexT 主题。
+Generated bash
+在项目根目录（personal-blog）下执行git clone https://github.com/next-theme/hexo-theme-next.git themes&#x2F;nextIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+然后，修改项目根目录下的 _config.yml 文件，启用主题：
+Generated yaml
+_config.yml… (找到 theme 字段)theme: nextIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+步骤 3：核心站点配置
+修改项目根目录下的 _config.yml 文件，填入你的个人信息。
+Generated yaml
+_config.ymltitle: 你的网站标题subtitle: ‘你的网站副标题’description: ‘你的网站描述，用于SEO’keywords:
+
+关键词1
+关键词2author: 你的名字language: zh-CNtimezone: ‘Asia&#x2F;Shanghai’
+
+URL (非常重要，用于部署)url: https:&#x2F;&#x2F;你的GitHub用户名.github.iopermalink: posts&#x2F;:abbrlink.html # 推荐使用更短的永久链接permalink_defaults:  abbrlink:    alg: crc32  # 算法：crc16(default) and crc32    rep: hex    # 进制：dec(default) and hexIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+安装永久链接插件 abbrlink：
+Generated bashnpm install hexo-abbrlink –saveIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+步骤 4：创建基础内容
+执行以下命令，创建一篇示例文章和一个“关于”页面。
+Generated bash
+创建 “关于” 页面hexo new page about
+创建第一篇文章hexo new post “我的第一篇博客”IGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+步骤 5：功能配置 (评论 &amp; 搜索)
+安装搜索插件：
+Generated bashnpm install hexo-generator-searchdbIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+配置主题文件 themes&#x2F;next&#x2F;_config.yml，开启本地搜索和 Giscus 评论。
+Generated yaml
+themes&#x2F;next&#x2F;_config.ymlLocal Searchlocal_search:  enable: true
+… (其他配置保持默认)Commentscomments:  active: giscus # 激活 Giscus
+… (其他评论系统设为 false)Giscus Configuration你需要先在 https://giscus.app/zh-CN 上配置好你的仓库，然后将获得的信息填入下方giscus:  enable: true  repo: # 你的GitHub用户名&#x2F;你的仓库名 (e.g., “user&#x2F;repo”)  repo_id: # 你的 Repo ID  category: # 你设置的 Discussion 分类名  category_id: # 你设置的 分类 ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CNIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+步骤 6：配置部署
+安装 Git 部署插件：
+Generated bashnpm install hexo-deployer-git –saveIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+修改项目根目录下的 _config.yml 文件，添加部署信息。
+Generated yaml
+_config.yml (文件末尾)deploy:  type: ‘git’  repo: https://github.com/你的GitHub用户名/你的GitHub用户名.github.io.git  branch: main # 或 master，取决于你的GitHub仓库主分支名IGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+注意：请确保你已经在 GitHub 创建了名为 你的GitHub用户名.github.io 的公开仓库。
+四、最终指令
+当所有配置完成后，执行以下命令即可将网站生成并部署到 GitHub Pages。
+Generated bash
+清理旧文件、生成新网站文件、部署到GitHubhexo clean &amp;&amp; hexo generate &amp;&amp; hexo deployIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+给用户的提示: 请将所有 你的… 占位符替换为你的实际信息。Giscus 的配置信息需要在其官网获取。
+
+Cursor
+好的，以下是针对你提供的个人博客开发计划的完整项目规划，涵盖整体架构、关键节点、注意事项和后续可扩展方向。请你确认无误后，我会按照你的计划逐步协助你开发。
+
+个人博客网站开发完整规划一、项目整体架构
+技术选型
+
+静态博客框架：Hexo
+主题：NexT
+运行环境：Node.js
+版本控制与部署：Git + GitHub Pages
+评论系统：Giscus（基于 GitHub Discussions）
+内容格式：Markdown
+
+
+目录结构（预期）
+
+根目录（personal-blog）
+source&#x2F;（博客内容与页面）
+themes&#x2F;next&#x2F;（NexT 主题）
+_config.yml（全局配置）
+package.json（依赖管理）
+其他 Hexo 相关目录和文件
+
+
+
+
+主要功能
+
+文章发布与管理
+主题美化与自定义
+本地搜索
+评论系统（Giscus）
+一键部署到 GitHub Pages
+
+
+
+
+二、开发关键节点与流程
+环境初始化
+
+安装 Hexo CLI
+初始化博客项目
+安装依赖
+
+
+主题安装与启用
+
+下载并配置 NexT 主题
+修改 _config.yml 启用主题
+
+
+核心配置
+
+填写个人信息（标题、副标题、描述、作者、语言、时区等）
+配置永久链接（abbrlink 插件）
+配置站点 URL（用于部署）
+
+
+内容创建
+
+创建“关于”页面
+创建首篇文章
+
+
+功能增强
+
+安装本地搜索插件
+配置 NexT 主题以启用本地搜索和 Giscus 评论
+获取并填写 Giscus 配置信息
+
+
+部署配置
+
+安装 Git 部署插件
+配置 _config.yml 的 deploy 字段
+确认 GitHub 仓库已创建
+
+
+一键部署
+
+清理、生成、部署到 GitHub Pages
+
+
+
+
+三、注意事项
+所有“你的…”占位符（如 GitHub 用户名、仓库名、Giscus 配置等）需替换为你的实际信息。
+Giscus 配置需提前在 giscus.app 官网获取。
+GitHub 仓库需提前创建，且为公开仓库，仓库名格式为 你的GitHub用户名.github.io。
+分支名（main&#x2F;master）需与 GitHub 仓库实际主分支一致。
+Node.js 版本建议使用 LTS 版本，避免兼容性问题。
+主题和插件如有新版本，建议定期更新。
+
+
+四、后续可扩展方向（可选）
+绑定自定义域名
+增加 RSS 订阅
+站点 SEO 优化
+文章分类&#x2F;标签优化
+主题个性化定制
+增加站点统计（如 Google Analytics、百度统计等）
+自动化 CI&#x2F;CD 部署
+
+
+请确认以上规划是否符合你的预期，或有无需要补充&#x2F;调整的地方。确认后我将严格按照你的开发计划，逐步协助你完成博客的搭建与配置。
+
+User
+是的，现在请你开始具体开发，如果开发内容过多，可以分步骤开发，一步一步完成，不需要一次性完成。
+
+Cursor
+收到！我会严格按照你的开发计划，分步骤协助你完成个人博客的搭建。每一步都会详细说明操作内容和注意事项，确保你可以顺利跟进。
+
+步骤 1：环境初始化与项目创建1.1 全局安装 Hexo-CLI请在终端执行以下命令，安装 Hexo 命令行工具（如已安装可跳过）：
+npm install hexo-cli -g
+
+1.2 初始化博客项目在你希望存放博客的目录下，执行：
+hexo init personal-blog &amp;&amp; cd personal-blog
+
+1.3 安装项目依赖进入 personal-blog 目录后，执行：
+npm install
+
+
+进度说明
+以上三步完成后，你会得到一个基础的 Hexo 博客项目，目录结构已生成，依赖已安装。
+如果你在执行过程中遇到任何报错，请将报错信息发给我，我会协助你排查。
+
+
+请你先完成上述步骤，并告知我进展。如果已完成或无误，我将继续进行“步骤 2：安装并启用 NexT 主题”。
+npm install hexo-cli -g
+
+hexo init personal-blog &amp;&amp; cd personal-blog
+
+npm install
+
+
+User
+运行npm install hexo-cli -g命令报错如下，请你分析原因并给出解决方案：
+
+Cursor
+你遇到的报错信息如下：
+npm error ENOTEMPTY: directory not empty, rename &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-cli&#x27; -&gt; &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-XmVeuPJU&#x27;
+
+原因分析这个报错通常是因为：
+
+之前安装 hexo-cli 时中断或异常，导致 node_modules/hexo-cli 目录下有残留文件或临时文件夹。
+可能有进程占用该目录，或者权限问题导致无法重命名&#x2F;覆盖。
+
+解决方案请按以下步骤操作：
+1. 手动删除残留目录在终端执行：
+rm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-clirm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-*
+
+2. 再次全局安装 Hexo-CLInpm install hexo-cli -g
+
+3. 如遇权限问题可加 sudo（仅限 Mac&#x2F;Linux）如果还是报权限相关错误，可以尝试：
+sudo npm install hexo-cli -g
+
+
+注意：如用 sudo，建议先确保 nvm 目录归属当前用户，避免后续权限混乱。
+
+4. 检查是否有进程占用如果依然报错，重启终端或电脑，确保没有进程占用相关目录后再试。
+
+请先尝试上述方法，若还有问题请把新的报错信息发给我，我会继续协助你解决！
+npm error ENOTEMPTY: directory not empty, rename &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-cli&#x27; -&gt; &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-XmVeuPJU&#x27;
+
+rm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-clirm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-*
+
+npm install hexo-cli -g
+
+sudo npm install hexo-cli -g
+
+
+User
+运行hexo init personal-blog &amp;&amp; cd personal-blog后，终端目前如下。我接下来该怎么做？
+
+Cursor
+很好，你已经成功执行了 hexo init personal-blog &amp;&amp; cd personal-blog，Hexo 已经帮你初始化了博客项目，并且自动进入了 personal-blog 目录。
+接下来请继续执行安装依赖这一步：
+npm install
+
+这条命令会自动安装 Hexo 博客所需的所有依赖包。
+
+操作步骤：
+
+确认你当前在 personal-blog 目录下（终端路径应该是 .../boke/personal-blog）。
+直接输入并执行：npm install
+
+
+安装完成后，请告知我进展。如果没有报错，我会带你进入下一步“安装并启用 NexT 主题”。
+npm install
+
+npm install
+
+
+User
+好的，可以进入下一步了
+
+Cursor
+非常棒！你已经完成了环境初始化和依赖安装。现在我们进入步骤 2：安装并启用 NexT 主题。
+
+步骤 2：安装并启用 NexT 主题2.1 下载 NexT 主题请确保你当前在 personal-blog 项目的根目录下，然后执行：
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+这条命令会把 NexT 主题下载到 themes/next 目录。
+
+2.2 启用 NexT 主题
+用文本编辑器打开 personal-blog 目录下的 _config.yml 文件。
+
+找到 theme: 这一行（大约在文件中部），将其修改为：
+theme: next
+
+保存文件。
+
+
+
+2.3 检查主题是否生效你可以先预览一下效果（可选）：
+hexo server
+然后在浏览器访问 http://localhost:4000 查看效果。按下 Ctrl+C 可停止本地服务。
+
+请你先完成2.1 和 2.2，如有问题随时反馈。完成后回复我，我会带你进入核心站点配置步骤！
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+theme: next
+
+hexo server
+
+
+User
+运行git clone https://github.com/next-theme/hexo-theme-next.git themes&#x2F;next报错，请你分析并给出解决方案
+
+Cursor
+你遇到的报错信息如下：
+fatal: unable to access &#x27;https://github.com/next-theme/hexo-theme-next.git/&#x27;: Error in the HTTP2 framing layer
+
+原因分析这个错误通常是由于网络连接异常、代理设置问题、或 GitHub 访问受限导致的。常见原因包括：
+
+本地网络不稳定或被墙，无法正常访问 GitHub。
+代理配置不当或未生效。
+临时的 GitHub 服务异常（较少见）。
+
+
+解决方案1. 检查网络环境
+直接在浏览器访问 https://github.com/next-theme/hexo-theme-next 看能否打开。
+如果打不开，说明你的网络环境无法直接访问 GitHub，建议使用科学上网工具（如 VPN、代理等）。
+
+2. 临时切换 Git 协议为 HTTP&#x2F;1.1有时 HTTP2 协议与部分网络环境不兼容，可以强制 Git 使用 HTTP&#x2F;1.1：
+git config --global http.version HTTP/1.1
+然后再尝试克隆：
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+3. 使用镜像源（推荐国内用户）如果你在中国大陆，建议使用清华大学开源镜像站：
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+4. 检查代理设置如果你使用了代理，确保代理配置正确。可以尝试关闭代理后再试，或切换到其他网络环境。
+5. 多试几次有时是临时网络波动，稍等片刻后重试也可能成功。
+
+请按上述方法逐步尝试，推荐优先使用镜像源，这样速度更快、成功率更高。如果还有问题，请把新的报错信息发给我，我会继续协助你！
+fatal: unable to access &#x27;https://github.com/next-theme/hexo-theme-next.git/&#x27;: Error in the HTTP2 framing layer
+
+git config --global http.version HTTP/1.1
+
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+
+User
+浏览器访问 https://github.com/next-theme/hexo-theme-next可以打开，我使用了代理，但仍然无法执行git clone https://github.com/next-theme/hexo-theme-next.git themes&#x2F;next命令
+
+Cursor
+感谢你的详细反馈！你能在浏览器访问 GitHub，说明代理大致可用，但 git clone 依然失败，可能是以下原因之一：
+
+终端（命令行）未走代理：浏览器和终端的代理设置是分开的，终端未配置代理时，git 访问依然会被墙。
+Git 未配置代理：即使你全局设置了代理，Git 也需要单独配置。
+代理协议不兼容：有些代理只支持 HTTP&#x2F;HTTPS，不支持 SOCKS5，或端口设置不对。
+
+
+解决方案1. 配置 Git 代理（以 HTTP 代理为例）假设你的代理地址为 127.0.0.1:7890（请根据你的实际代理端口修改）：
+git config --global http.proxy http://127.0.0.1:7890git config --global https.proxy http://127.0.0.1:7890
+
+如果你用的是 SOCKS5 代理（如 Clash、V2rayN），可以这样：
+git config --global http.proxy &#x27;socks5://127.0.0.1:7890&#x27;git config --global https.proxy &#x27;socks5://127.0.0.1:7890&#x27;
+
+然后再尝试克隆：
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+
+2. 代理软件设置
+确认你的代理软件（如 Clash、Surge、Shadowrocket 等）已开启“系统代理”或“全局代理”模式。
+有些代理软件需要手动勾选“允许命令行程序走代理”或“代理本地流量”。
+
+
+3. 使用镜像源（推荐）如果配置代理依然不行，直接用清华镜像源：
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+
+4. 取消 Git 代理（如后续不用代理）如果后续不需要代理，可以取消：
+git config --global --unset http.proxygit config --global --unset https.proxy
+
+
+请你先尝试配置 Git 代理或使用镜像源，如仍有问题请反馈详细报错信息，我会继续协助你！
+git config --global http.proxy http://127.0.0.1:7890git config --global https.proxy http://127.0.0.1:7890
+
+git config --global http.proxy &#x27;socks5://127.0.0.1:7890&#x27;git config --global https.proxy &#x27;socks5://127.0.0.1:7890&#x27;
+
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+git config --global --unset http.proxygit config --global --unset https.proxy
+
+
+User
+2.1与2.2我都已经完成，可以继续往下了
+
+Cursor
+非常棒！你已经完成了 NexT 主题的安装与启用。接下来进入步骤 3：核心站点配置。
+
+步骤 3：核心站点配置3.1 修改站点配置信息请用文本编辑器打开 personal-blog 目录下的 _config.yml 文件，找到并修改以下字段（用你的实际信息替换）：
+title: 你的博客标题subtitle: &#x27;你的博客副标题&#x27;description: &#x27;你的博客描述，用于SEO&#x27;keywords:  - 关键词1  - 关键词2author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;# URL（非常重要，用于部署）url: https://你的GitHub用户名.github.iopermalink: posts/:abbrlink.html # 推荐使用更短的永久链接permalink_defaults:  abbrlink:    alg: crc32    rep: hex
+
+
+3.2 安装永久链接插件 abbrlink在 personal-blog 目录下执行：
+npm install hexo-abbrlink --save
+
+
+3.3 检查与保存
+确认 _config.yml 文件已保存且无格式错误（YAML 缩进要对齐）。
+abbrlink 插件安装无报错。
+
+
+请你完成以上操作后回复我，或者如有疑问随时反馈。完成后我会带你进入内容创建步骤！
+title: 你的博客标题subtitle: &#x27;你的博客副标题&#x27;description: &#x27;你的博客描述，用于SEO&#x27;keywords:  - 关键词1  - 关键词2author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;# URL（非常重要，用于部署）url: https://你的GitHub用户名.github.iopermalink: posts/:abbrlink.html # 推荐使用更短的永久链接permalink_defaults:  abbrlink:    alg: crc32    rep: hex
+
+npm install hexo-abbrlink --save
+
+
+User
+上述内容均已完成，可以继续往下
+
+Cursor
+非常好！你已经完成了核心站点配置和永久链接插件的安装。接下来进入步骤 4：创建基础内容。
+
+步骤 4：创建基础内容4.1 创建“关于”页面在 personal-blog 目录下执行：
+hexo new page about
+
+这会在 source/about 目录下生成一个 index.md 文件，你可以用 Markdown 编辑这个页面内容。
+
+4.2 创建第一篇文章继续执行：
+hexo new post &quot;我的第一篇博客&quot;
+
+这会在 source/_posts 目录下生成一个新的 Markdown 文件（如 我的第一篇博客.md），你可以用 Markdown 编辑你的第一篇文章内容。
+
+4.3 可选：本地预览你可以随时用以下命令本地预览博客效果：
+hexo server
+
+浏览器访问 http://localhost:4000 查看页面效果。
+
+请你完成上述两步（4.1 和 4.2），如有问题随时反馈。完成后回复我，我会带你进入**功能配置（评论 &amp; 搜索）**步骤！
+hexo new page about
+
+hexo new post &quot;我的第一篇博客&quot;
+
+hexo server
+
+
+User
+是的，已经完成了，继续往下
+
+Cursor
+非常棒！你已经完成了基础内容的创建。接下来进入步骤 5：功能配置（评论 &amp; 搜索）。
+
+步骤 5：功能配置（评论 &amp; 搜索）5.1 安装本地搜索插件在 personal-blog 目录下执行：
+npm install hexo-generator-searchdb
+
+
+5.2 配置 NexT 主题以启用本地搜索和 Giscus 评论请用文本编辑器打开 themes/next/_config.yml 文件，找到并修改以下内容：
+1. 启用本地搜索找到 local_search 字段，修改为：
+local_search:  enable: true  # 其他配置保持默认即可
+
+2. 启用 Giscus 评论找到 comments 字段，修改为：
+comments:  active: giscus  # 其他评论系统设为 false
+
+3. 配置 Giscus找到 giscus 字段，填写你在 giscus.app 获取的配置信息：
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+注意：如暂时没有 Giscus 信息，可先留空，后续随时补充。
+
+
+5.3 保存并检查
+确认 themes/next/_config.yml 文件已保存且无格式错误（YAML 缩进要对齐）。
+本地搜索和评论相关配置已正确填写。
+
+
+请你完成上述操作后回复我，或如有疑问随时反馈。完成后我会带你进入部署配置步骤！
+npm install hexo-generator-searchdb
+
+local_search:  enable: true  # 其他配置保持默认即可
+
+comments:  active: giscus  # 其他评论系统设为 false
+
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+User
+
+启用 Giscus 评论找到 comments 字段，修改为：comments:  active: giscus
+
+其他评论系统设为 false这一步我没懂，我找到文件中原本这块内容为如下，我该具体怎么改？
+
+Cursor
+你的疑问非常好！你找到的 themes/next/_config.yml 文件中 comments 字段原本内容如下：
+comments:  # Available values: tabs | buttons  style: tabs  # Choose a comment system to be displayed by default.  # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances  active:  # Setting `true` means remembering the comment system selected by the visitor.  storage: true  # Lazyload all comment systems.  lazyload: false  # Modify texts or order for any naves, here are some examples.  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+
+你需要这样修改：
+将 active 字段设置为 giscus  
+其他内容可以保持不变
+
+修改后如下：
+comments:  style: tabs  active: giscus  storage: true  lazyload: false  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+
+注意：
+
+active: giscus 表示默认启用 Giscus 评论系统。
+其他评论系统无需设置为 false，只要 active 选 giscus 即可。
+后续还需要在同一文件下找到 giscus: 字段，填写你的 Giscus 相关配置信息。
+
+
+如还有疑问请随时提问，完成后请告知我，咱们继续下一步！
+comments:  # Available values: tabs | buttons  style: tabs  # Choose a comment system to be displayed by default.  # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances  active:  # Setting `true` means remembering the comment system selected by the visitor.  storage: true  # Lazyload all comment systems.  lazyload: false  # Modify texts or order for any naves, here are some examples.  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+comments:  style: tabs  active: giscus  storage: true  lazyload: false  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+
+User
+
+配置 Giscus这一步我没有找到giscus字段，yml文件中只有我刚才手动修改的active: giscus这一处giscus字段，我该怎么做？
+
+
+Cursor
+你的情况很常见，部分 NexT 主题的 _config.yml 文件默认没有 giscus: 相关配置，需要手动添加。
+
+具体操作方法
+在 themes/next/_config.yml 文件末尾（或合适位置）添加如下内容：
+
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+请将上述内容中的“你的…”部分替换为你在 giscus.app 获取的实际信息。
+
+
+示例（假设你叫 Alan，仓库名为 alan&#x2F;alan.github.io）giscus:  enable: true  repo: alan/alan.github.io  repo_id: xxxxxxxx  category: Announcements  category_id: xxxxxxxx  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+注意事项：
+
+giscus: 字段和 comments: 字段是同级的，不能嵌套在 comments: 下面。
+YAML 缩进要严格对齐，建议用空格（不要用 Tab）。
+如果暂时没有 Giscus 的 repo_id、category_id 等，可以先留空，后续随时补充。
+
+
+请你将上述内容添加到 themes/next/_config.yml 文件中，保存即可。完成后请告知我，咱们继续下一步！如有疑问也请随时提问。
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+giscus:  enable: true  repo: alan/alan.github.io  repo_id: xxxxxxxx  category: Announcements  category_id: xxxxxxxx  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+User
+好的，下面可以进入部署配置步骤
+
+Cursor
+非常好！你已经完成了评论和搜索功能的配置。接下来进入步骤 6：配置部署。
+
+步骤 6：配置部署6.1 安装 Git 部署插件在 personal-blog 目录下执行：
+npm install hexo-deployer-git --save
+
+
+6.2 配置 _config.yml 部署信息
+打开 personal-blog 目录下的 _config.yml 文件。
+在文件末尾添加或修改如下内容（请用你的 GitHub 用户名替换）：
+
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/你的GitHub用户名/你的GitHub用户名.github.io.git  branch: main # 或 master，取决于你的 GitHub 仓库主分支名
+
+
+例如，如果你的 GitHub 用户名是 alan，则应为：
+repo: https://github.com/alan/alan.github.io.git
+
+6.3 检查仓库
+请确保你已经在 GitHub 上创建了名为 你的GitHub用户名.github.io 的公开仓库。
+仓库主分支名通常为 main，如你的仓库是 master，请相应修改 branch 字段。
+
+
+6.4 保存并检查
+确认 _config.yml 文件已保存且无格式错误。
+部署插件安装无报错。
+
+
+请你完成上述操作后回复我，或如有疑问随时反馈。完成后我会带你进入最后一步：一键部署上线！
+npm install hexo-deployer-git --save
+
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/你的GitHub用户名/你的GitHub用户名.github.io.git  branch: main # 或 master，取决于你的 GitHub 仓库主分支名
+
+
+User
+刚才giscus评论系统的参数我已经获取到了，如下。所以我这里的仓库并不是“名为 你的GitHub用户名.github.io 的公开仓库”，与6.3步骤似乎有冲突，我该怎么做？
+
+Cursor
+你的疑问非常好，下面详细解释：
+
+1. Giscus 评论仓库与博客部署仓库可以不同
+Giscus 评论系统用的是 Discussions 功能，只要你有一个公开仓库（比如你现在用的 Alansws/Public-files-share），并在 giscus.app 上配置好即可。  
+博客部署仓库必须是 你的GitHub用户名.github.io 这种格式（如 Alansws/Alansws.github.io），这样 GitHub Pages 才能自动识别并发布你的博客网站。
+
+这两个仓库可以完全不同，互不影响。
+
+2. 你现在应该怎么做？
+Giscus 配置：继续保持你现在的参数（repo 填 Alansws/Public-files-share，repo_id、category_id 等都用 giscus.app 提供的即可）。
+博客部署仓库：你需要在 GitHub 上新建一个公开仓库，名字必须是 Alansws.github.io（假设你的用户名是 Alansws），用于存放博客生成的静态文件。
+
+
+3. 部署配置怎么写？在 personal-blog/_config.yml 文件末尾，deploy 字段这样写：
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/Alansws/Alansws.github.io.git  branch: main  # 或 master，取决于你的仓库主分支名
+
+
+4. 总结
+Giscus 评论仓库：可以是任意你有权限的公开仓库（如 Alansws/Public-files-share）。
+博客部署仓库：必须是 Alansws.github.io，用于 GitHub Pages 展示你的博客。
+
+
+请你：
+
+在 GitHub 上新建 Alansws.github.io 公开仓库（如果还没有）。
+按上述方法配置 deploy 字段。
+完成后回复我，咱们进入最后一步：一键部署上线！
+
+如有疑问请随时提问！
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/Alansws/Alansws.github.io.git  branch: main  # 或 master，取决于你的仓库主分支名
+
+
+User
+是的，已经完成
+
+Cursor
+非常棒！你已经完成了所有部署前的准备工作。现在进入最后一步：一键部署上线。
+
+步骤 7：生成并部署到 GitHub Pages请在 personal-blog 目录下依次执行以下命令：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+hexo clean：清理旧的生成文件，避免缓存问题。
+hexo generate：生成最新的静态网页文件。
+hexo deploy：将生成的网页自动推送到你配置的 GitHub 仓库（如 Alansws.github.io）。
+
+
+部署完成后
+打开浏览器，访问：https://Alansws.github.io（请用你的 GitHub 用户名替换 Alansws）
+
+检查博客是否能正常访问，内容、主题、评论等功能是否正常。
+
+
+
+常见问题提示
+首次部署后，GitHub Pages 可能有几分钟延迟，请耐心等待。
+如遇到权限、token、推送失败等问题，请将报错信息发给我，我会帮你排查。
+后续每次写完新文章，只需执行 hexo generate &amp;&amp; hexo deploy 即可自动更新博客。
+
+
+请你执行上述命令并访问你的博客首页，确认无误后，个人博客的基础搭建就全部完成了！如有任何问题或想要扩展功能（如自定义域名、SEO、统计等），随时告诉我！
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+运行部署命令后提示报错，请你分析并提出解决方案
+
+Cursor
+你的报错信息如下：
+remote: Invalid username or token. Password authentication is not supported for Git operations.fatal: Authentication failed for &#x27;https://github.com/Alansws/Alansws.github.io.git/&#x27;
+
+原因分析GitHub 现已不支持账户密码方式推送代码，必须使用**Personal Access Token（个人访问令牌）**或 SSH key 进行身份验证。你当前的 Hexo 配置使用了 HTTPS 协议，但没有配置 token，导致认证失败。
+
+解决方案一：使用 Personal Access Token（推荐）
+生成 GitHub Token
+
+登录 GitHub，进入 Personal Access Tokens 页面。
+点击“Generate new token”。
+选择 repo 权限（用于推送代码到仓库）。
+生成后复制 token（只会显示一次）。
+
+
+修改 Hexo 部署配置
+打开 personal-blog/_config.yml，将 deploy 的 repo 字段改为如下格式：
+deploy:  type: git  repo: https://&lt;你的GitHub用户名&gt;:&lt;你的Token&gt;@github.com/Alansws/Alansws.github.io.git  branch: main
+
+例如：
+repo: https://Alansws:ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@github.com/Alansws/Alansws.github.io.git
+
+
+注意：token 非常敏感，请勿泄露。此方法仅适合个人本地环境。
+
+
+重新部署
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+解决方案二：使用 SSH Key（更安全）
+生成 SSH Key（如本地没有）
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+将公钥添加到 GitHub
+
+复制 ~/.ssh/id_ed25519.pub 文件内容。
+登录 GitHub，进入 SSH and GPG keys 页面，添加新 SSH Key。
+
+
+修改 deploy 配置为 SSH 格式
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+测试 SSH 连接
+ssh -T git@github.com
+
+重新部署
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+总结
+推荐第一种方法（简单直接，适合新手）。
+如果你对 SSH 熟悉，建议用第二种方法（更安全，适合长期使用）。
+
+
+请根据你的实际情况选择一种方法操作，遇到新问题请随时反馈！
+remote: Invalid username or token. Password authentication is not supported for Git operations.fatal: Authentication failed for &#x27;https://github.com/Alansws/Alansws.github.io.git/&#x27;
+
+deploy:  type: git  repo: https://&lt;你的GitHub用户名&gt;:&lt;你的Token&gt;@github.com/Alansws/Alansws.github.io.git  branch: main
+
+repo: https://Alansws:ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@github.com/Alansws/Alansws.github.io.git
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+github上我之前SSH keys有申请过一个，此时需要重新New一个新的吗？以及我需要执行“1. 生成 SSH Key（如本地没有）”这一步骤吗？复制 ~&#x2F;.ssh&#x2F;id_ed25519.pub 文件内容，这个文件在哪里，我找不到。请你重新具体教我怎么做
+
+Cursor
+你的问题很细致，下面我会一步一步详细教你如何用 SSH key 方式部署 Hexo 博客到 GitHub Pages。
+
+1. 你是否需要新建 SSH Key？
+如果你本地已经有 SSH key（比如 ~/.ssh/id_ed25519.pub 或 ~/.ssh/id_rsa.pub），不需要新建，直接用现有的即可。
+如果你不确定本地有没有，可以先检查一下。
+
+
+2. 检查本地是否已有 SSH Key在终端输入：
+ls ~/.ssh
+
+如果输出中有 id_ed25519.pub 或 id_rsa.pub，说明你已经有 SSH key，可以直接用。
+
+3. 如果没有 SSH Key，如何新建？如果上一步没有 .pub 文件，说明你还没有 SSH key，需要新建：
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+一路回车即可，默认会生成在 ~/.ssh/id_ed25519 和 ~/.ssh/id_ed25519.pub。
+
+4. 复制公钥内容无论是新建还是已有，公钥文件一般在：
+
+~/.ssh/id_ed25519.pub（推荐，较新）
+或 ~/.ssh/id_rsa.pub（较老）
+
+你可以用如下命令查看并复制内容：
+cat ~/.ssh/id_ed25519.pub
+或
+cat ~/.ssh/id_rsa.pub
+
+把输出的内容全部复制。
+
+5. 添加 SSH Key 到 GitHub
+登录 GitHub，进入 SSH and GPG keys 页面。
+点击右上角 “New SSH key”。
+Title 随便填，Key 内容粘贴刚才复制的公钥内容。
+保存。
+
+
+6. 修改 Hexo 部署配置为 SSH 格式打开 personal-blog/_config.yml，将 deploy 部分改为：
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+
+7. 测试 SSH 连接在终端输入：
+ssh -T git@github.com
+
+如果提示 Hi Alansws! You&#39;ve successfully authenticated...，说明 SSH 配置成功。
+
+8. 重新部署在 personal-blog 目录下执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+总结
+有 SSH key 就不用新建，没有就新建。
+公钥文件一般在 ~/.ssh/ 目录下，.pub 结尾的就是公钥。
+添加到 GitHub 后，deploy 配置用 SSH 格式即可。
+
+如有任何一步不明白，或遇到报错，请把终端输出发给我，我会继续帮你！
+ls ~/.ssh
+
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+cat ~/.ssh/id_ed25519.pub
+
+cat ~/.ssh/id_rsa.pub
+
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+我的本地终端运行(base) sws@AlanswsdeMacBook-Air ~ % cat ~&#x2F;.ssh&#x2F;id_rsa.pub命令后是有输出的，但是我添加 SSH Key 到 GitHub并保存时，提示这个Key is already in use，我该怎么做？
+
+Cursor
+你遇到的提示“Key is already in use”说明：你的这把 SSH 公钥已经被添加到你的 GitHub 账号（或你有权限的某个组织）中了。
+
+你现在该怎么做？1. 不需要重复添加
+既然这把 key 已经在 GitHub 上，你无需再添加，可以直接用它进行 SSH 认证和代码推送。
+
+
+2. 检查 deploy 配置请确保你在 personal-blog/_config.yml 文件中的 deploy 配置如下（用 SSH 格式）：
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+
+3. 测试 SSH 连接在终端输入：
+ssh -T git@github.com
+
+
+如果输出类似于：Hi Alansws! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+说明 SSH 配置完全没问题。
+
+
+4. 重新部署在 personal-blog 目录下执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+常见问题
+如果部署时仍然报错（如权限、找不到 key），请把报错信息发给我。
+如果你有多个 GitHub 账号或多把 key，可能需要配置 ~/.ssh/config 文件指定使用哪把 key（如有需要我可以教你）。
+
+
+总结：你现在不需要再添加 SSH key，直接用现有的即可。只要 deploy 配置正确，SSH 连接测试通过，就可以顺利部署！
+如有任何问题，随时发终端输出给我，我会继续帮你解决！
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+Hi Alansws! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+提示我“Congratulations, you’re all set!”，似乎已经成功了。因此我平时该如何来使用我的博客网站？请你具体指导我。
+
+Cursor
+恭喜你，部署成功！你的 Hexo 博客已经上线，接下来你可以愉快地写作和管理你的个人博客了。下面是详细的日常使用指南：
+
+1. 访问你的博客
+打开浏览器，访问：  https://Alansws.github.io
+（请用你的 GitHub 用户名替换 Alansws）
+
+
+2. 日常写作与管理2.1 新建文章在 personal-blog 目录下，运行：
+hexo new post &quot;你的文章标题&quot;
+
+
+这会在 source/_posts/ 目录下生成一个 Markdown 文件。
+用你喜欢的编辑器（如 VSCode、Typora）编辑这个文件，撰写内容。
+
+
+2.2 新建页面（如“关于我”、“友链”等）hexo new page about
+
+会在 source/about/index.md 生成页面文件。
+
+
+2.3 本地预览在 personal-blog 目录下运行：
+hexo server
+
+
+浏览器访问 http://localhost:4000
+实时预览你的博客效果，修改内容后刷新即可看到变化。
+
+
+2.4 发布到线上每次写完文章或修改内容后，执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+这样你的博客就会自动同步到 GitHub Pages，几分钟后线上即可访问到最新内容。
+
+
+3. 文章管理
+所有文章都在 source/_posts/ 目录下，直接用 Markdown 编辑即可。
+你可以自由添加、修改、删除文章文件。
+
+
+4. 主题和功能扩展
+想更换主题、调整样式、添加新功能（如统计、SEO、自定义菜单等），只需修改配置文件或安装插件即可。
+NexT 主题文档：https://theme-next.js.org/
+
+
+5. 评论系统
+你的 Giscus 评论已配置好，读者可以直接在每篇文章下留言（需 GitHub 账号）。
+
+
+6. 常见问题
+内容没更新？检查是否执行了 hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy，并等待几分钟。
+页面报错或样式异常？检查 Markdown 格式、YAML 配置缩进，或清理浏览器缓存。
+
+
+7. 备份与迁移
+建议定期将整个 personal-blog 文件夹备份到本地或云盘。
+换电脑时，只需拷贝此文件夹，安装 Node.js 和 Hexo 依赖即可继续写作。
+
+
+如需更多高级玩法（自定义域名、SEO、自动化部署、数据统计等），随时告诉我，我可以继续为你详细指导！
+祝你写作愉快，博客长虹！如有任何问题，随时来问我！
+https://Alansws.github.io
+
+hexo new post &quot;你的文章标题&quot;
+
+hexo new page about
+
+hexo server
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>博客开发全过程</title>
+    <url>/posts/1.html</url>
+    <content><![CDATA[个人博客网站开发规划Exported on 2025&#x2F;7&#x2F;27 at GMT+8 21:12:43 from Cursor (1.2.1)
+
+User
+我打算制作一个个人博客网站，下面是完整的个人博客开发计划，请你结合下面的开发计划，首先对该个人博客网站开发做一个完整的规划，等待我同意后再开始具体进行开发。
+一、项目目标
+使用 Hexo 框架和 NexT 主题，初始化并配置一个静态个人博客。项目最终配置为通过 Git 一键部署到 GitHub Pages。
+二、技术栈
+框架: Hexo
+主题: Hexo Theme NexT
+运行环境: Node.js
+版本控制 &amp; 部署: Git &amp; GitHub Pages
+评论系统: Giscus (基于 GitHub Discussions)
+内容格式: Markdown
+三、执行步骤
+步骤 1：环境初始化与项目创建
+执行以下命令，完成 Hexo 环境安装和项目初始化。
+Generated bash
+1. 全局安装 Hexo-CLInpm install hexo-cli -g
+2. 初始化博客项目并进入目录hexo init personal-blog &amp;&amp; cd personal-blog
+3. 安装项目依赖npm install
+步骤 2：安装并启用 NexT 主题
+执行以下命令，下载 NexT 主题。
+Generated bash
+在项目根目录（personal-blog）下执行git clone https://github.com/next-theme/hexo-theme-next.git themes&#x2F;nextIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+然后，修改项目根目录下的 _config.yml 文件，启用主题：
+Generated yaml
+_config.yml… (找到 theme 字段)theme: nextIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+步骤 3：核心站点配置
+修改项目根目录下的 _config.yml 文件，填入你的个人信息。
+Generated yaml
+_config.ymltitle: 你的网站标题subtitle: ‘你的网站副标题’description: ‘你的网站描述，用于SEO’keywords:
+
+关键词1
+关键词2author: 你的名字language: zh-CNtimezone: ‘Asia&#x2F;Shanghai’
+
+URL (非常重要，用于部署)url: https:&#x2F;&#x2F;你的GitHub用户名.github.iopermalink: posts&#x2F;:abbrlink.html # 推荐使用更短的永久链接permalink_defaults:  abbrlink:    alg: crc32  # 算法：crc16(default) and crc32    rep: hex    # 进制：dec(default) and hexIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+安装永久链接插件 abbrlink：
+Generated bashnpm install hexo-abbrlink –saveIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+步骤 4：创建基础内容
+执行以下命令，创建一篇示例文章和一个“关于”页面。
+Generated bash
+创建 “关于” 页面hexo new page about
+创建第一篇文章hexo new post “我的第一篇博客”IGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+步骤 5：功能配置 (评论 &amp; 搜索)
+安装搜索插件：
+Generated bashnpm install hexo-generator-searchdbIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+配置主题文件 themes&#x2F;next&#x2F;_config.yml，开启本地搜索和 Giscus 评论。
+Generated yaml
+themes&#x2F;next&#x2F;_config.ymlLocal Searchlocal_search:  enable: true
+… (其他配置保持默认)Commentscomments:  active: giscus # 激活 Giscus
+… (其他评论系统设为 false)Giscus Configuration你需要先在 https://giscus.app/zh-CN 上配置好你的仓库，然后将获得的信息填入下方giscus:  enable: true  repo: # 你的GitHub用户名&#x2F;你的仓库名 (e.g., “user&#x2F;repo”)  repo_id: # 你的 Repo ID  category: # 你设置的 Discussion 分类名  category_id: # 你设置的 分类 ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CNIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+步骤 6：配置部署
+安装 Git 部署插件：
+Generated bashnpm install hexo-deployer-git –saveIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+修改项目根目录下的 _config.yml 文件，添加部署信息。
+Generated yaml
+_config.yml (文件末尾)deploy:  type: ‘git’  repo: https://github.com/你的GitHub用户名/你的GitHub用户名.github.io.git  branch: main # 或 master，取决于你的GitHub仓库主分支名IGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.YamlIGNORE_WHEN_COPYING_END
+注意：请确保你已经在 GitHub 创建了名为 你的GitHub用户名.github.io 的公开仓库。
+四、最终指令
+当所有配置完成后，执行以下命令即可将网站生成并部署到 GitHub Pages。
+Generated bash
+清理旧文件、生成新网站文件、部署到GitHubhexo clean &amp;&amp; hexo generate &amp;&amp; hexo deployIGNORE_WHEN_COPYING_STARTcontent_copydownloadUse code with caution.BashIGNORE_WHEN_COPYING_END
+给用户的提示: 请将所有 你的… 占位符替换为你的实际信息。Giscus 的配置信息需要在其官网获取。
+
+Cursor
+好的，以下是针对你提供的个人博客开发计划的完整项目规划，涵盖整体架构、关键节点、注意事项和后续可扩展方向。请你确认无误后，我会按照你的计划逐步协助你开发。
+
+个人博客网站开发完整规划一、项目整体架构
+技术选型
+
+静态博客框架：Hexo
+主题：NexT
+运行环境：Node.js
+版本控制与部署：Git + GitHub Pages
+评论系统：Giscus（基于 GitHub Discussions）
+内容格式：Markdown
+
+
+目录结构（预期）
+
+根目录（personal-blog）
+source&#x2F;（博客内容与页面）
+themes&#x2F;next&#x2F;（NexT 主题）
+_config.yml（全局配置）
+package.json（依赖管理）
+其他 Hexo 相关目录和文件
+
+
+
+
+主要功能
+
+文章发布与管理
+主题美化与自定义
+本地搜索
+评论系统（Giscus）
+一键部署到 GitHub Pages
+
+
+
+
+二、开发关键节点与流程
+环境初始化
+
+安装 Hexo CLI
+初始化博客项目
+安装依赖
+
+
+主题安装与启用
+
+下载并配置 NexT 主题
+修改 _config.yml 启用主题
+
+
+核心配置
+
+填写个人信息（标题、副标题、描述、作者、语言、时区等）
+配置永久链接（abbrlink 插件）
+配置站点 URL（用于部署）
+
+
+内容创建
+
+创建“关于”页面
+创建首篇文章
+
+
+功能增强
+
+安装本地搜索插件
+配置 NexT 主题以启用本地搜索和 Giscus 评论
+获取并填写 Giscus 配置信息
+
+
+部署配置
+
+安装 Git 部署插件
+配置 _config.yml 的 deploy 字段
+确认 GitHub 仓库已创建
+
+
+一键部署
+
+清理、生成、部署到 GitHub Pages
+
+
+
+
+三、注意事项
+所有“你的…”占位符（如 GitHub 用户名、仓库名、Giscus 配置等）需替换为你的实际信息。
+Giscus 配置需提前在 giscus.app 官网获取。
+GitHub 仓库需提前创建，且为公开仓库，仓库名格式为 你的GitHub用户名.github.io。
+分支名（main&#x2F;master）需与 GitHub 仓库实际主分支一致。
+Node.js 版本建议使用 LTS 版本，避免兼容性问题。
+主题和插件如有新版本，建议定期更新。
+
+
+四、后续可扩展方向（可选）
+绑定自定义域名
+增加 RSS 订阅
+站点 SEO 优化
+文章分类&#x2F;标签优化
+主题个性化定制
+增加站点统计（如 Google Analytics、百度统计等）
+自动化 CI&#x2F;CD 部署
+
+
+请确认以上规划是否符合你的预期，或有无需要补充&#x2F;调整的地方。确认后我将严格按照你的开发计划，逐步协助你完成博客的搭建与配置。
+
+User
+是的，现在请你开始具体开发，如果开发内容过多，可以分步骤开发，一步一步完成，不需要一次性完成。
+
+Cursor
+收到！我会严格按照你的开发计划，分步骤协助你完成个人博客的搭建。每一步都会详细说明操作内容和注意事项，确保你可以顺利跟进。
+
+步骤 1：环境初始化与项目创建1.1 全局安装 Hexo-CLI请在终端执行以下命令，安装 Hexo 命令行工具（如已安装可跳过）：
+npm install hexo-cli -g
+
+1.2 初始化博客项目在你希望存放博客的目录下，执行：
+hexo init personal-blog &amp;&amp; cd personal-blog
+
+1.3 安装项目依赖进入 personal-blog 目录后，执行：
+npm install
+
+
+进度说明
+以上三步完成后，你会得到一个基础的 Hexo 博客项目，目录结构已生成，依赖已安装。
+如果你在执行过程中遇到任何报错，请将报错信息发给我，我会协助你排查。
+
+
+请你先完成上述步骤，并告知我进展。如果已完成或无误，我将继续进行“步骤 2：安装并启用 NexT 主题”。
+npm install hexo-cli -g
+
+hexo init personal-blog &amp;&amp; cd personal-blog
+
+npm install
+
+
+User
+运行npm install hexo-cli -g命令报错如下，请你分析原因并给出解决方案：
+
+Cursor
+你遇到的报错信息如下：
+npm error ENOTEMPTY: directory not empty, rename &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-cli&#x27; -&gt; &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-XmVeuPJU&#x27;
+
+原因分析这个报错通常是因为：
+
+之前安装 hexo-cli 时中断或异常，导致 node_modules/hexo-cli 目录下有残留文件或临时文件夹。
+可能有进程占用该目录，或者权限问题导致无法重命名&#x2F;覆盖。
+
+解决方案请按以下步骤操作：
+1. 手动删除残留目录在终端执行：
+rm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-clirm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-*
+
+2. 再次全局安装 Hexo-CLInpm install hexo-cli -g
+
+3. 如遇权限问题可加 sudo（仅限 Mac&#x2F;Linux）如果还是报权限相关错误，可以尝试：
+sudo npm install hexo-cli -g
+
+
+注意：如用 sudo，建议先确保 nvm 目录归属当前用户，避免后续权限混乱。
+
+4. 检查是否有进程占用如果依然报错，重启终端或电脑，确保没有进程占用相关目录后再试。
+
+请先尝试上述方法，若还有问题请把新的报错信息发给我，我会继续协助你解决！
+npm error ENOTEMPTY: directory not empty, rename &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-cli&#x27; -&gt; &#x27;/Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-XmVeuPJU&#x27;
+
+rm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/hexo-clirm -rf /Users/sws/.nvm/versions/node/v22.17.0/lib/node_modules/.hexo-cli-*
+
+npm install hexo-cli -g
+
+sudo npm install hexo-cli -g
+
+
+User
+运行hexo init personal-blog &amp;&amp; cd personal-blog后，终端目前如下。我接下来该怎么做？
+
+Cursor
+很好，你已经成功执行了 hexo init personal-blog &amp;&amp; cd personal-blog，Hexo 已经帮你初始化了博客项目，并且自动进入了 personal-blog 目录。
+接下来请继续执行安装依赖这一步：
+npm install
+
+这条命令会自动安装 Hexo 博客所需的所有依赖包。
+
+操作步骤：
+
+确认你当前在 personal-blog 目录下（终端路径应该是 .../boke/personal-blog）。
+直接输入并执行：npm install
+
+
+安装完成后，请告知我进展。如果没有报错，我会带你进入下一步“安装并启用 NexT 主题”。
+npm install
+
+npm install
+
+
+User
+好的，可以进入下一步了
+
+Cursor
+非常棒！你已经完成了环境初始化和依赖安装。现在我们进入步骤 2：安装并启用 NexT 主题。
+
+步骤 2：安装并启用 NexT 主题2.1 下载 NexT 主题请确保你当前在 personal-blog 项目的根目录下，然后执行：
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+这条命令会把 NexT 主题下载到 themes/next 目录。
+
+2.2 启用 NexT 主题
+用文本编辑器打开 personal-blog 目录下的 _config.yml 文件。
+
+找到 theme: 这一行（大约在文件中部），将其修改为：
+theme: next
+
+保存文件。
+
+
+
+2.3 检查主题是否生效你可以先预览一下效果（可选）：
+hexo server
+然后在浏览器访问 http://localhost:4000 查看效果。按下 Ctrl+C 可停止本地服务。
+
+请你先完成2.1 和 2.2，如有问题随时反馈。完成后回复我，我会带你进入核心站点配置步骤！
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+theme: next
+
+hexo server
+
+
+User
+运行git clone https://github.com/next-theme/hexo-theme-next.git themes&#x2F;next报错，请你分析并给出解决方案
+
+Cursor
+你遇到的报错信息如下：
+fatal: unable to access &#x27;https://github.com/next-theme/hexo-theme-next.git/&#x27;: Error in the HTTP2 framing layer
+
+原因分析这个错误通常是由于网络连接异常、代理设置问题、或 GitHub 访问受限导致的。常见原因包括：
+
+本地网络不稳定或被墙，无法正常访问 GitHub。
+代理配置不当或未生效。
+临时的 GitHub 服务异常（较少见）。
+
+
+解决方案1. 检查网络环境
+直接在浏览器访问 https://github.com/next-theme/hexo-theme-next 看能否打开。
+如果打不开，说明你的网络环境无法直接访问 GitHub，建议使用科学上网工具（如 VPN、代理等）。
+
+2. 临时切换 Git 协议为 HTTP&#x2F;1.1有时 HTTP2 协议与部分网络环境不兼容，可以强制 Git 使用 HTTP&#x2F;1.1：
+git config --global http.version HTTP/1.1
+然后再尝试克隆：
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+3. 使用镜像源（推荐国内用户）如果你在中国大陆，建议使用清华大学开源镜像站：
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+4. 检查代理设置如果你使用了代理，确保代理配置正确。可以尝试关闭代理后再试，或切换到其他网络环境。
+5. 多试几次有时是临时网络波动，稍等片刻后重试也可能成功。
+
+请按上述方法逐步尝试，推荐优先使用镜像源，这样速度更快、成功率更高。如果还有问题，请把新的报错信息发给我，我会继续协助你！
+fatal: unable to access &#x27;https://github.com/next-theme/hexo-theme-next.git/&#x27;: Error in the HTTP2 framing layer
+
+git config --global http.version HTTP/1.1
+
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+
+User
+浏览器访问 https://github.com/next-theme/hexo-theme-next可以打开，我使用了代理，但仍然无法执行git clone https://github.com/next-theme/hexo-theme-next.git themes&#x2F;next命令
+
+Cursor
+感谢你的详细反馈！你能在浏览器访问 GitHub，说明代理大致可用，但 git clone 依然失败，可能是以下原因之一：
+
+终端（命令行）未走代理：浏览器和终端的代理设置是分开的，终端未配置代理时，git 访问依然会被墙。
+Git 未配置代理：即使你全局设置了代理，Git 也需要单独配置。
+代理协议不兼容：有些代理只支持 HTTP&#x2F;HTTPS，不支持 SOCKS5，或端口设置不对。
+
+
+解决方案1. 配置 Git 代理（以 HTTP 代理为例）假设你的代理地址为 127.0.0.1:7890（请根据你的实际代理端口修改）：
+git config --global http.proxy http://127.0.0.1:7890git config --global https.proxy http://127.0.0.1:7890
+
+如果你用的是 SOCKS5 代理（如 Clash、V2rayN），可以这样：
+git config --global http.proxy &#x27;socks5://127.0.0.1:7890&#x27;git config --global https.proxy &#x27;socks5://127.0.0.1:7890&#x27;
+
+然后再尝试克隆：
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+
+2. 代理软件设置
+确认你的代理软件（如 Clash、Surge、Shadowrocket 等）已开启“系统代理”或“全局代理”模式。
+有些代理软件需要手动勾选“允许命令行程序走代理”或“代理本地流量”。
+
+
+3. 使用镜像源（推荐）如果配置代理依然不行，直接用清华镜像源：
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+
+4. 取消 Git 代理（如后续不用代理）如果后续不需要代理，可以取消：
+git config --global --unset http.proxygit config --global --unset https.proxy
+
+
+请你先尝试配置 Git 代理或使用镜像源，如仍有问题请反馈详细报错信息，我会继续协助你！
+git config --global http.proxy http://127.0.0.1:7890git config --global https.proxy http://127.0.0.1:7890
+
+git config --global http.proxy &#x27;socks5://127.0.0.1:7890&#x27;git config --global https.proxy &#x27;socks5://127.0.0.1:7890&#x27;
+
+git clone https://github.com/next-theme/hexo-theme-next.git themes/next
+
+git clone https://mirrors.tuna.tsinghua.edu.cn/git/hexo/theme-next.git themes/next
+
+git config --global --unset http.proxygit config --global --unset https.proxy
+
+
+User
+2.1与2.2我都已经完成，可以继续往下了
+
+Cursor
+非常棒！你已经完成了 NexT 主题的安装与启用。接下来进入步骤 3：核心站点配置。
+
+步骤 3：核心站点配置3.1 修改站点配置信息请用文本编辑器打开 personal-blog 目录下的 _config.yml 文件，找到并修改以下字段（用你的实际信息替换）：
+title: 你的博客标题subtitle: &#x27;你的博客副标题&#x27;description: &#x27;你的博客描述，用于SEO&#x27;keywords:  - 关键词1  - 关键词2author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;# URL（非常重要，用于部署）url: https://你的GitHub用户名.github.iopermalink: posts/:abbrlink.html # 推荐使用更短的永久链接permalink_defaults:  abbrlink:    alg: crc32    rep: hex
+
+
+3.2 安装永久链接插件 abbrlink在 personal-blog 目录下执行：
+npm install hexo-abbrlink --save
+
+
+3.3 检查与保存
+确认 _config.yml 文件已保存且无格式错误（YAML 缩进要对齐）。
+abbrlink 插件安装无报错。
+
+
+请你完成以上操作后回复我，或者如有疑问随时反馈。完成后我会带你进入内容创建步骤！
+title: 你的博客标题subtitle: &#x27;你的博客副标题&#x27;description: &#x27;你的博客描述，用于SEO&#x27;keywords:  - 关键词1  - 关键词2author: 你的名字language: zh-CNtimezone: &#x27;Asia/Shanghai&#x27;# URL（非常重要，用于部署）url: https://你的GitHub用户名.github.iopermalink: posts/:abbrlink.html # 推荐使用更短的永久链接permalink_defaults:  abbrlink:    alg: crc32    rep: hex
+
+npm install hexo-abbrlink --save
+
+
+User
+上述内容均已完成，可以继续往下
+
+Cursor
+非常好！你已经完成了核心站点配置和永久链接插件的安装。接下来进入步骤 4：创建基础内容。
+
+步骤 4：创建基础内容4.1 创建“关于”页面在 personal-blog 目录下执行：
+hexo new page about
+
+这会在 source/about 目录下生成一个 index.md 文件，你可以用 Markdown 编辑这个页面内容。
+
+4.2 创建第一篇文章继续执行：
+hexo new post &quot;我的第一篇博客&quot;
+
+这会在 source/_posts 目录下生成一个新的 Markdown 文件（如 我的第一篇博客.md），你可以用 Markdown 编辑你的第一篇文章内容。
+
+4.3 可选：本地预览你可以随时用以下命令本地预览博客效果：
+hexo server
+
+浏览器访问 http://localhost:4000 查看页面效果。
+
+请你完成上述两步（4.1 和 4.2），如有问题随时反馈。完成后回复我，我会带你进入**功能配置（评论 &amp; 搜索）**步骤！
+hexo new page about
+
+hexo new post &quot;我的第一篇博客&quot;
+
+hexo server
+
+
+User
+是的，已经完成了，继续往下
+
+Cursor
+非常棒！你已经完成了基础内容的创建。接下来进入步骤 5：功能配置（评论 &amp; 搜索）。
+
+步骤 5：功能配置（评论 &amp; 搜索）5.1 安装本地搜索插件在 personal-blog 目录下执行：
+npm install hexo-generator-searchdb
+
+
+5.2 配置 NexT 主题以启用本地搜索和 Giscus 评论请用文本编辑器打开 themes/next/_config.yml 文件，找到并修改以下内容：
+1. 启用本地搜索找到 local_search 字段，修改为：
+local_search:  enable: true  # 其他配置保持默认即可
+
+2. 启用 Giscus 评论找到 comments 字段，修改为：
+comments:  active: giscus  # 其他评论系统设为 false
+
+3. 配置 Giscus找到 giscus 字段，填写你在 giscus.app 获取的配置信息：
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+注意：如暂时没有 Giscus 信息，可先留空，后续随时补充。
+
+
+5.3 保存并检查
+确认 themes/next/_config.yml 文件已保存且无格式错误（YAML 缩进要对齐）。
+本地搜索和评论相关配置已正确填写。
+
+
+请你完成上述操作后回复我，或如有疑问随时反馈。完成后我会带你进入部署配置步骤！
+npm install hexo-generator-searchdb
+
+local_search:  enable: true  # 其他配置保持默认即可
+
+comments:  active: giscus  # 其他评论系统设为 false
+
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+User
+
+启用 Giscus 评论找到 comments 字段，修改为：comments:  active: giscus
+
+其他评论系统设为 false这一步我没懂，我找到文件中原本这块内容为如下，我该具体怎么改？
+
+Cursor
+你的疑问非常好！你找到的 themes/next/_config.yml 文件中 comments 字段原本内容如下：
+comments:  # Available values: tabs | buttons  style: tabs  # Choose a comment system to be displayed by default.  # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances  active:  # Setting `true` means remembering the comment system selected by the visitor.  storage: true  # Lazyload all comment systems.  lazyload: false  # Modify texts or order for any naves, here are some examples.  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+
+你需要这样修改：
+将 active 字段设置为 giscus  
+其他内容可以保持不变
+
+修改后如下：
+comments:  style: tabs  active: giscus  storage: true  lazyload: false  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+
+注意：
+
+active: giscus 表示默认启用 Giscus 评论系统。
+其他评论系统无需设置为 false，只要 active 选 giscus 即可。
+后续还需要在同一文件下找到 giscus: 字段，填写你的 Giscus 相关配置信息。
+
+
+如还有疑问请随时提问，完成后请告知我，咱们继续下一步！
+comments:  # Available values: tabs | buttons  style: tabs  # Choose a comment system to be displayed by default.  # Available values: disqus | disqusjs | changyan | livere | gitalk | utterances  active:  # Setting `true` means remembering the comment system selected by the visitor.  storage: true  # Lazyload all comment systems.  lazyload: false  # Modify texts or order for any naves, here are some examples.  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+comments:  style: tabs  active: giscus  storage: true  lazyload: false  nav:    #disqus:    #  text: Load Disqus    #  order: -1    #gitalk:    #  order: -2
+
+
+User
+
+配置 Giscus这一步我没有找到giscus字段，yml文件中只有我刚才手动修改的active: giscus这一处giscus字段，我该怎么做？
+
+
+Cursor
+你的情况很常见，部分 NexT 主题的 _config.yml 文件默认没有 giscus: 相关配置，需要手动添加。
+
+具体操作方法
+在 themes/next/_config.yml 文件末尾（或合适位置）添加如下内容：
+
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+请将上述内容中的“你的…”部分替换为你在 giscus.app 获取的实际信息。
+
+
+示例（假设你叫 Alan，仓库名为 alan&#x2F;alan.github.io）giscus:  enable: true  repo: alan/alan.github.io  repo_id: xxxxxxxx  category: Announcements  category_id: xxxxxxxx  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+注意事项：
+
+giscus: 字段和 comments: 字段是同级的，不能嵌套在 comments: 下面。
+YAML 缩进要严格对齐，建议用空格（不要用 Tab）。
+如果暂时没有 Giscus 的 repo_id、category_id 等，可以先留空，后续随时补充。
+
+
+请你将上述内容添加到 themes/next/_config.yml 文件中，保存即可。完成后请告知我，咱们继续下一步！如有疑问也请随时提问。
+giscus:  enable: true  repo: 你的GitHub用户名/你的仓库名  repo_id: 你的Repo ID  category: 你的Discussion分类名  category_id: 你的分类ID  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+giscus:  enable: true  repo: alan/alan.github.io  repo_id: xxxxxxxx  category: Announcements  category_id: xxxxxxxx  mapping: pathname  strict: 0  reactions_enabled: 1  emit_metadata: 0  input_position: top  theme: preferred_color_scheme  lang: zh-CN
+
+
+User
+好的，下面可以进入部署配置步骤
+
+Cursor
+非常好！你已经完成了评论和搜索功能的配置。接下来进入步骤 6：配置部署。
+
+步骤 6：配置部署6.1 安装 Git 部署插件在 personal-blog 目录下执行：
+npm install hexo-deployer-git --save
+
+
+6.2 配置 _config.yml 部署信息
+打开 personal-blog 目录下的 _config.yml 文件。
+在文件末尾添加或修改如下内容（请用你的 GitHub 用户名替换）：
+
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/你的GitHub用户名/你的GitHub用户名.github.io.git  branch: main # 或 master，取决于你的 GitHub 仓库主分支名
+
+
+例如，如果你的 GitHub 用户名是 alan，则应为：
+repo: https://github.com/alan/alan.github.io.git
+
+6.3 检查仓库
+请确保你已经在 GitHub 上创建了名为 你的GitHub用户名.github.io 的公开仓库。
+仓库主分支名通常为 main，如你的仓库是 master，请相应修改 branch 字段。
+
+
+6.4 保存并检查
+确认 _config.yml 文件已保存且无格式错误。
+部署插件安装无报错。
+
+
+请你完成上述操作后回复我，或如有疑问随时反馈。完成后我会带你进入最后一步：一键部署上线！
+npm install hexo-deployer-git --save
+
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/你的GitHub用户名/你的GitHub用户名.github.io.git  branch: main # 或 master，取决于你的 GitHub 仓库主分支名
+
+
+User
+刚才giscus评论系统的参数我已经获取到了，如下。所以我这里的仓库并不是“名为 你的GitHub用户名.github.io 的公开仓库”，与6.3步骤似乎有冲突，我该怎么做？
+
+Cursor
+你的疑问非常好，下面详细解释：
+
+1. Giscus 评论仓库与博客部署仓库可以不同
+Giscus 评论系统用的是 Discussions 功能，只要你有一个公开仓库（比如你现在用的 Alansws/Public-files-share），并在 giscus.app 上配置好即可。  
+博客部署仓库必须是 你的GitHub用户名.github.io 这种格式（如 Alansws/Alansws.github.io），这样 GitHub Pages 才能自动识别并发布你的博客网站。
+
+这两个仓库可以完全不同，互不影响。
+
+2. 你现在应该怎么做？
+Giscus 配置：继续保持你现在的参数（repo 填 Alansws/Public-files-share，repo_id、category_id 等都用 giscus.app 提供的即可）。
+博客部署仓库：你需要在 GitHub 上新建一个公开仓库，名字必须是 Alansws.github.io（假设你的用户名是 Alansws），用于存放博客生成的静态文件。
+
+
+3. 部署配置怎么写？在 personal-blog/_config.yml 文件末尾，deploy 字段这样写：
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/Alansws/Alansws.github.io.git  branch: main  # 或 master，取决于你的仓库主分支名
+
+
+4. 总结
+Giscus 评论仓库：可以是任意你有权限的公开仓库（如 Alansws/Public-files-share）。
+博客部署仓库：必须是 Alansws.github.io，用于 GitHub Pages 展示你的博客。
+
+
+请你：
+
+在 GitHub 上新建 Alansws.github.io 公开仓库（如果还没有）。
+按上述方法配置 deploy 字段。
+完成后回复我，咱们进入最后一步：一键部署上线！
+
+如有疑问请随时提问！
+deploy:  type: &#x27;git&#x27;  repo: https://github.com/Alansws/Alansws.github.io.git  branch: main  # 或 master，取决于你的仓库主分支名
+
+
+User
+是的，已经完成
+
+Cursor
+非常棒！你已经完成了所有部署前的准备工作。现在进入最后一步：一键部署上线。
+
+步骤 7：生成并部署到 GitHub Pages请在 personal-blog 目录下依次执行以下命令：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+hexo clean：清理旧的生成文件，避免缓存问题。
+hexo generate：生成最新的静态网页文件。
+hexo deploy：将生成的网页自动推送到你配置的 GitHub 仓库（如 Alansws.github.io）。
+
+
+部署完成后
+打开浏览器，访问：https://Alansws.github.io（请用你的 GitHub 用户名替换 Alansws）
+
+检查博客是否能正常访问，内容、主题、评论等功能是否正常。
+
+
+
+常见问题提示
+首次部署后，GitHub Pages 可能有几分钟延迟，请耐心等待。
+如遇到权限、token、推送失败等问题，请将报错信息发给我，我会帮你排查。
+后续每次写完新文章，只需执行 hexo generate &amp;&amp; hexo deploy 即可自动更新博客。
+
+
+请你执行上述命令并访问你的博客首页，确认无误后，个人博客的基础搭建就全部完成了！如有任何问题或想要扩展功能（如自定义域名、SEO、统计等），随时告诉我！
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+运行部署命令后提示报错，请你分析并提出解决方案
+
+Cursor
+你的报错信息如下：
+remote: Invalid username or token. Password authentication is not supported for Git operations.fatal: Authentication failed for &#x27;https://github.com/Alansws/Alansws.github.io.git/&#x27;
+
+原因分析GitHub 现已不支持账户密码方式推送代码，必须使用**Personal Access Token（个人访问令牌）**或 SSH key 进行身份验证。你当前的 Hexo 配置使用了 HTTPS 协议，但没有配置 token，导致认证失败。
+
+解决方案一：使用 Personal Access Token（推荐）
+生成 GitHub Token
+
+登录 GitHub，进入 Personal Access Tokens 页面。
+点击“Generate new token”。
+选择 repo 权限（用于推送代码到仓库）。
+生成后复制 token（只会显示一次）。
+
+
+修改 Hexo 部署配置
+打开 personal-blog/_config.yml，将 deploy 的 repo 字段改为如下格式：
+deploy:  type: git  repo: https://&lt;你的GitHub用户名&gt;:&lt;你的Token&gt;@github.com/Alansws/Alansws.github.io.git  branch: main
+
+例如：
+repo: https://Alansws:ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@github.com/Alansws/Alansws.github.io.git
+
+
+注意：token 非常敏感，请勿泄露。此方法仅适合个人本地环境。
+
+
+重新部署
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+解决方案二：使用 SSH Key（更安全）
+生成 SSH Key（如本地没有）
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+将公钥添加到 GitHub
+
+复制 ~/.ssh/id_ed25519.pub 文件内容。
+登录 GitHub，进入 SSH and GPG keys 页面，添加新 SSH Key。
+
+
+修改 deploy 配置为 SSH 格式
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+测试 SSH 连接
+ssh -T git@github.com
+
+重新部署
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+总结
+推荐第一种方法（简单直接，适合新手）。
+如果你对 SSH 熟悉，建议用第二种方法（更安全，适合长期使用）。
+
+
+请根据你的实际情况选择一种方法操作，遇到新问题请随时反馈！
+remote: Invalid username or token. Password authentication is not supported for Git operations.fatal: Authentication failed for &#x27;https://github.com/Alansws/Alansws.github.io.git/&#x27;
+
+deploy:  type: git  repo: https://&lt;你的GitHub用户名&gt;:&lt;你的Token&gt;@github.com/Alansws/Alansws.github.io.git  branch: main
+
+repo: https://Alansws:ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@github.com/Alansws/Alansws.github.io.git
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+github上我之前SSH keys有申请过一个，此时需要重新New一个新的吗？以及我需要执行“1. 生成 SSH Key（如本地没有）”这一步骤吗？复制 ~&#x2F;.ssh&#x2F;id_ed25519.pub 文件内容，这个文件在哪里，我找不到。请你重新具体教我怎么做
+
+Cursor
+你的问题很细致，下面我会一步一步详细教你如何用 SSH key 方式部署 Hexo 博客到 GitHub Pages。
+
+1. 你是否需要新建 SSH Key？
+如果你本地已经有 SSH key（比如 ~/.ssh/id_ed25519.pub 或 ~/.ssh/id_rsa.pub），不需要新建，直接用现有的即可。
+如果你不确定本地有没有，可以先检查一下。
+
+
+2. 检查本地是否已有 SSH Key在终端输入：
+ls ~/.ssh
+
+如果输出中有 id_ed25519.pub 或 id_rsa.pub，说明你已经有 SSH key，可以直接用。
+
+3. 如果没有 SSH Key，如何新建？如果上一步没有 .pub 文件，说明你还没有 SSH key，需要新建：
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+一路回车即可，默认会生成在 ~/.ssh/id_ed25519 和 ~/.ssh/id_ed25519.pub。
+
+4. 复制公钥内容无论是新建还是已有，公钥文件一般在：
+
+~/.ssh/id_ed25519.pub（推荐，较新）
+或 ~/.ssh/id_rsa.pub（较老）
+
+你可以用如下命令查看并复制内容：
+cat ~/.ssh/id_ed25519.pub
+或
+cat ~/.ssh/id_rsa.pub
+
+把输出的内容全部复制。
+
+5. 添加 SSH Key 到 GitHub
+登录 GitHub，进入 SSH and GPG keys 页面。
+点击右上角 “New SSH key”。
+Title 随便填，Key 内容粘贴刚才复制的公钥内容。
+保存。
+
+
+6. 修改 Hexo 部署配置为 SSH 格式打开 personal-blog/_config.yml，将 deploy 部分改为：
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+
+7. 测试 SSH 连接在终端输入：
+ssh -T git@github.com
+
+如果提示 Hi Alansws! You&#39;ve successfully authenticated...，说明 SSH 配置成功。
+
+8. 重新部署在 personal-blog 目录下执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+总结
+有 SSH key 就不用新建，没有就新建。
+公钥文件一般在 ~/.ssh/ 目录下，.pub 结尾的就是公钥。
+添加到 GitHub 后，deploy 配置用 SSH 格式即可。
+
+如有任何一步不明白，或遇到报错，请把终端输出发给我，我会继续帮你！
+ls ~/.ssh
+
+ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;
+
+cat ~/.ssh/id_ed25519.pub
+
+cat ~/.ssh/id_rsa.pub
+
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+我的本地终端运行(base) sws@AlanswsdeMacBook-Air ~ % cat ~&#x2F;.ssh&#x2F;id_rsa.pub命令后是有输出的，但是我添加 SSH Key 到 GitHub并保存时，提示这个Key is already in use，我该怎么做？
+
+Cursor
+你遇到的提示“Key is already in use”说明：你的这把 SSH 公钥已经被添加到你的 GitHub 账号（或你有权限的某个组织）中了。
+
+你现在该怎么做？1. 不需要重复添加
+既然这把 key 已经在 GitHub 上，你无需再添加，可以直接用它进行 SSH 认证和代码推送。
+
+
+2. 检查 deploy 配置请确保你在 personal-blog/_config.yml 文件中的 deploy 配置如下（用 SSH 格式）：
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+
+3. 测试 SSH 连接在终端输入：
+ssh -T git@github.com
+
+
+如果输出类似于：Hi Alansws! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+说明 SSH 配置完全没问题。
+
+
+4. 重新部署在 personal-blog 目录下执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+常见问题
+如果部署时仍然报错（如权限、找不到 key），请把报错信息发给我。
+如果你有多个 GitHub 账号或多把 key，可能需要配置 ~/.ssh/config 文件指定使用哪把 key（如有需要我可以教你）。
+
+
+总结：你现在不需要再添加 SSH key，直接用现有的即可。只要 deploy 配置正确，SSH 连接测试通过，就可以顺利部署！
+如有任何问题，随时发终端输出给我，我会继续帮你解决！
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+Hi Alansws! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+提示我“Congratulations, you’re all set!”，似乎已经成功了。因此我平时该如何来使用我的博客网站？请你具体指导我。
+
+Cursor
+恭喜你，部署成功！你的 Hexo 博客已经上线，接下来你可以愉快地写作和管理你的个人博客了。下面是详细的日常使用指南：
+
+1. 访问你的博客
+打开浏览器，访问：  https://Alansws.github.io
+（请用你的 GitHub 用户名替换 Alansws）
+
+
+2. 日常写作与管理2.1 新建文章在 personal-blog 目录下，运行：
+hexo new post &quot;你的文章标题&quot;
+
+
+这会在 source/_posts/ 目录下生成一个 Markdown 文件。
+用你喜欢的编辑器（如 VSCode、Typora）编辑这个文件，撰写内容。
+
+
+2.2 新建页面（如“关于我”、“友链”等）hexo new page about
+
+会在 source/about/index.md 生成页面文件。
+
+
+2.3 本地预览在 personal-blog 目录下运行：
+hexo server
+
+
+浏览器访问 http://localhost:4000
+实时预览你的博客效果，修改内容后刷新即可看到变化。
+
+
+2.4 发布到线上每次写完文章或修改内容后，执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+这样你的博客就会自动同步到 GitHub Pages，几分钟后线上即可访问到最新内容。
+
+
+3. 文章管理
+所有文章都在 source/_posts/ 目录下，直接用 Markdown 编辑即可。
+你可以自由添加、修改、删除文章文件。
+
+
+4. 主题和功能扩展
+想更换主题、调整样式、添加新功能（如统计、SEO、自定义菜单等），只需修改配置文件或安装插件即可。
+NexT 主题文档：https://theme-next.js.org/
+
+
+5. 评论系统
+你的 Giscus 评论已配置好，读者可以直接在每篇文章下留言（需 GitHub 账号）。
+
+
+6. 常见问题
+内容没更新？检查是否执行了 hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy，并等待几分钟。
+页面报错或样式异常？检查 Markdown 格式、YAML 配置缩进，或清理浏览器缓存。
+
+
+7. 备份与迁移
+建议定期将整个 personal-blog 文件夹备份到本地或云盘。
+换电脑时，只需拷贝此文件夹，安装 Node.js 和 Hexo 依赖即可继续写作。
+
+
+如需更多高级玩法（自定义域名、SEO、自动化部署、数据统计等），随时告诉我，我可以继续为你详细指导！
+祝你写作愉快，博客长虹！如有任何问题，随时来问我！
+https://Alansws.github.io
+
+hexo new post &quot;你的文章标题&quot;
+
+hexo new page about
+
+hexo server
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+分析这是什么报错？
+
+Cursor
+你遇到的报错如下：
+remote: No anonymous write access.fatal: Authentication failed for &#x27;https://github.com/Alansws/Alansws.github.io.git/&#x27;
+
+
+报错分析
+No anonymous write access：表示你尝试用“匿名（未认证）”方式向 GitHub 仓库推送代码，但 GitHub 不允许匿名用户写入（推送）仓库。
+Authentication failed：认证失败，说明你没有提供有效的身份凭证（如 token 或 SSH key），或者凭证不正确。
+
+
+产生原因你当前的 Hexo 部署配置使用了 HTTPS 协议，但没有配置 GitHub 账号的认证信息（如 Personal Access Token），或者没有用 SSH 协议。
+
+解决办法1. 推荐使用 SSH 协议请确保 personal-blog/_config.yml 的 deploy 配置如下：
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+并且你本地的 SSH key 已经添加到 GitHub（你前面已经完成）。
+
+2. 如果必须用 HTTPS，需加 Token如果你想用 HTTPS，repo 字段必须这样写：
+repo: https://你的GitHub用户名:你的Token@github.com/Alansws/Alansws.github.io.git
+但强烈推荐用 SSH，更安全也更方便。
+
+3. 检查是否混用如果你已经用 SSH key 成功过一次，但又切回了 HTTPS，就会出现这个报错。请始终保持 deploy 配置为 SSH 格式。
+
+总结
+这个报错是因为没有认证信息导致的推送失败。
+按上面的方法用 SSH 协议配置即可解决。
+
+如还有问题，请把你的 _config.yml deploy 配置内容发给我，我帮你检查！
+remote: No anonymous write access.fatal: Authentication failed for &#x27;https://github.com/Alansws/Alansws.github.io.git/&#x27;
+
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+repo: https://你的GitHub用户名:你的Token@github.com/Alansws/Alansws.github.io.git
+
+
+User
+我已经把我的 _config.yml deploy 配置内容发给你了，请你帮我检查！
+
+Cursor
+你的 _config.yml 中 deploy 配置如下：
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+这个配置是完全正确的 SSH 格式，理论上只要你的本地 SSH key 已经添加到 GitHub，并且本地 git 能用 SSH 方式访问你的仓库，就可以正常推送。
+
+检查与建议1. 检查 SSH 连接请在终端运行：
+ssh -T git@github.com
+
+如果输出如下内容，说明 SSH 配置没问题：
+Hi Alansws! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+
+
+2. 检查 git 用户确保你本地 git 的 user.name 和 user.email 已经设置（虽然不是必须，但建议设置）：
+git config --global user.name &quot;你的名字&quot;git config --global user.email &quot;你的邮箱&quot;
+
+
+3. 检查是否有多个 SSH key如果你有多个 GitHub 账号或多把 key，可能需要配置 ~/.ssh/config 文件，指定推送到 github.com 时用哪把 key。例如：
+Host github.com  HostName github.com  User git  IdentityFile ~/.ssh/id_rsa
+（如你用的是 id_ed25519，请改成对应的文件名）
+
+4. 重新部署确认无误后，在 personal-blog 目录下执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+总结
+你的 deploy 配置没问题，只要 SSH 能连通 GitHub 就能推送。
+如果还有报错，请把 ssh -T git@github.com 的输出和 hexo deploy 的报错信息发给我，我会继续帮你排查！
+
+如有其他疑问，也欢迎随时提问！
+deploy:  type: git  repo: git@github.com:Alansws/Alansws.github.io.git  branch: main
+
+ssh -T git@github.com
+
+Hi Alansws! You&#x27;ve successfully authenticated, but GitHub does not provide shell access.
+
+git config --global user.name &quot;你的名字&quot;git config --global user.email &quot;你的邮箱&quot;
+
+Host github.com  HostName github.com  User git  IdentityFile ~/.ssh/id_rsa
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+解读这一段代码在做什么事情？
+
+Cursor
+当然可以！你发来的这段终端输出，详细记录了你执行 hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy 这条命令后，Hexo 博客的整个本地生成与远程部署过程。下面我为你逐步解读：
+
+1. hexo clean
+INFO  Deleted database.
+INFO  Deleted public folder.
+
+这一步是清理旧的缓存和生成文件，确保后续生成的是最新内容。
+
+2. hexo generate
+INFO  Start processing
+INFO  Generated: ...
+INFO  53 files generated in 268 ms
+
+这一步是根据你的 Markdown 文章和配置，生成静态网页文件，输出到 public/ 目录。你可以看到它生成了首页、文章页、归档页、about页、各种 JS&#x2F;CSS&#x2F;图片等静态资源。
+
+3. hexo deploy
+INFO  Deploying: git
+INFO  Clearing .deploy_git folder...
+INFO  Copying files from public folder...
+[main 6550037] Site updated: 2025-07-27 18:25:32
+Enter passphrase for key &#39;/Users/sws/.ssh/id_rsa&#39;:
+To github.com:Alansws/Alansws.github.io.git
+INFO  Deploy done: git
+
+这一步是将刚刚生成的静态网页，通过 git 推送到你的 GitHub Pages 仓库（Alansws.github.io）。  
+
+你用的是 SSH key 认证（所以提示你输入密钥密码）。
+git 把所有新生成的文件打包、压缩、推送到远程仓库。
+最后显示 Deploy done: git，说明部署成功。
+
+
+4. 其他细节
+Your name and email address were configured automatically...这是 git 的提示，说明你的提交者信息是自动生成的（可以用 git config 命令自定义）。
+branch &#39;main&#39; set up to track &#39;git@github.com:Alansws/Alansws.github.io.git/main&#39;.说明本地和远程的 main 分支已经关联。
+
+
+总结这段输出说明你已经成功地将本地博客内容生成并部署到了 GitHub Pages 仓库，几分钟后就可以在https://Alansws.github.io访问到你的博客了！
+
+如有更多细节想了解，或想知道如何优化、扩展博客，随时告诉我！
+
+User
+现在我可以通过@https://alansws.github.io/ 来访问我的博客，这其实已经算是够了，那如果我希望能用我自己的域名，别人访问我这个域名就能定向到我目前的博客，我该怎么做呢？我的域名目前被cloudflare托管。
+
+Cursor
+非常棒，你已经成功上线了自己的博客！如果你想用自己的域名（比如 yourdomain.com）来访问你的博客，并且域名托管在 Cloudflare，操作流程如下：
+
+1. 在 GitHub Pages 仓库添加 CNAME 文件
+打开你的博客源码目录（personal-blog）。
+
+编辑 source 目录下的 CNAME 文件（如果没有就新建一个，注意文件名全大写无扩展名）。
+
+文件内容只写你的自定义域名，比如：
+yourdomain.com
+
+如果有多个域名，每行一个。
+
+保存后，重新部署：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+这样，GitHub Pages 仓库根目录下会自动生成一个 CNAME 文件，GitHub 会识别你的自定义域名。
+
+
+
+2. 在 Cloudflare 设置 DNS 解析
+登录 Cloudflare，进入你的域名管理后台。
+
+进入“DNS”设置页面。
+
+添加一条 CNAME 记录：
+
+Name（主机名）：@（代表根域名）或你想用的子域名（如 blog）
+Target（目标）：alansws.github.io
+Proxy status：可以选择“DNS only”或“Proxied”（推荐“Proxied”以隐藏 GitHub 源站 IP 并加速）
+
+示例：
+
+
+
+类型
+名称
+内容
+代理状态
+
+
+
+CNAME
+@
+alansws.github.io
+Proxied
+
+
+CNAME
+www
+alansws.github.io
+Proxied
+
+
+
+如果 Cloudflare 不允许根域名用 CNAME，可以用 A 记录指向 185.199.108.153、185.199.109.153、185.199.110.153、185.199.111.153（GitHub Pages 官方 IP），但推荐用 CNAME+子域名。
+
+
+
+
+3. 在 GitHub Pages 仓库设置自定义域名
+打开你的 Alansws.github.io 仓库页面。
+点击“Settings” → “Pages”。
+在“Custom domain”处填写你的域名（如 yourdomain.com），保存。
+勾选“Enforce HTTPS”（强制 HTTPS，推荐）。
+
+
+4. 等待生效
+DNS 解析和 HTTPS 证书可能需要几分钟到几小时生效。
+你可以用 https://dnschecker.org/ 查询你的域名解析是否生效。
+
+
+5. 访问你的自定义域名
+现在访问 yourdomain.com，就会自动跳转到你的博客页面了！
+
+
+参考官方文档
+GitHub Pages 官方自定义域名文档
+Cloudflare 官方 DNS 配置文档
+
+
+如有任何疑问，或遇到 Cloudflare&#x2F;GitHub 配置问题，欢迎随时发截图或报错信息给我，我会帮你详细解答！
+yourdomain.com
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+
+在 GitHub Pages 仓库设置自定义域名打开你的 Alansws.github.io 仓库页面。点击“Settings” → “Pages”。在“Custom domain”处填写你的域名（如 yourdomain.com），保存。勾选“Enforce HTTPS”（强制 HTTPS，推荐）。这一步骤中，在“Custom domain”处填写你的域名后，提示我“www.alansws.xyz is improperly configuredDomain’s DNS record could not be retrieved. For more information, see documentation (InvalidDNSError).”，怎么办？
+
+
+Cursor
+你遇到的提示：
+
+“www.alansws.xyz is improperly configuredDomain’s DNS record could not be retrieved. For more information, see documentation (InvalidDNSError).”
+
+说明 GitHub Pages 检查不到你的域名的 DNS 解析记录，常见原因和解决办法如下：
+
+1. 检查 Cloudflare DNS 解析设置请确保你在 Cloudflare 的 DNS 设置中，已经添加了正确的 CNAME 记录：
+
+类型：CNAME
+名称：www
+目标：alansws.github.io
+代理状态：可以是“Proxied”或“DNS only”
+
+示例：
+
+
+
+类型
+名称
+内容
+代理状态
+
+
+
+CNAME
+www
+alansws.github.io
+Proxied
+
+
+如果你想让裸域（alansws.xyz）也能访问，可以再加一条：
+
+
+
+类型
+名称
+内容
+代理状态
+
+
+
+CNAME
+@
+alansws.github.io
+Proxied
+
+
+
+注意：有些 DNS 服务商不允许根域名（@）用 CNAME，这时可以用 A 记录指向 GitHub Pages 的 IP（见下文）。
+
+
+2. 如果是根域名（@），用 A 记录如果你想让 alansws.xyz（不带 www）也能访问，添加如下 A 记录（四条都加）：
+
+
+
+类型
+名称
+内容
+代理状态
+
+
+
+A
+@
+185.199.108.153
+Proxied
+
+
+A
+@
+185.199.109.153
+Proxied
+
+
+A
+@
+185.199.110.153
+Proxied
+
+
+A
+@
+185.199.111.153
+Proxied
+
+
+
+3. 检查 CNAME 文件确保你的博客源码的 source/CNAME 文件内容为：
+www.alansws.xyz
+
+然后重新部署：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+4. 等待 DNS 生效
+DNS 解析有时需要几分钟到几小时才能全球生效。
+可以用 https://dnschecker.org/ 查询 www.alansws.xyz 的 CNAME 解析是否指向了 alansws.github.io。
+
+
+5. 再次在 GitHub Pages 设置自定义域名
+等 DNS 生效后，回到 GitHub Pages 的“Custom domain”处重新填写并保存你的域名。
+如果一切正常，错误提示会消失，并可勾选“Enforce HTTPS”。
+
+
+6. 参考文档
+GitHub Pages 官方自定义域名文档
+Cloudflare 官方 DNS 配置文档
+
+
+总结
+Cloudflare DNS 中添加正确的 CNAME（或 A 记录）。
+博客源码 source/CNAME 文件内容为你的域名。
+等待 DNS 生效后再在 GitHub Pages 设置自定义域名。
+
+如还有问题，请截图你的 Cloudflare DNS 设置页面发给我，我可以帮你具体分析！
+www.alansws.xyz
+
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+所以总结一下，我现在可以通过alansws.github.io直接访问，也可以通过blog.alansws.xyz域名访问，对吗？然后请你最后为我总结一下我们一共需要几步来达成绑定自定义域名这一目的？
+
+Cursor
+你的理解完全正确！只要你在 Cloudflare DNS 设置了正确的解析，并在 GitHub Pages 配置了自定义域名，你可以通过 alansws.github.io 和 blog.alansws.xyz（或你设置的其他自定义域名）都能访问你的博客。
+
+绑定自定义域名到 GitHub Pages 总结流程一共只需 4 步：
+第1步：在 Cloudflare 添加 DNS 解析
+如果用子域名（如 blog.alansws.xyz）：
+
+添加一条 CNAME 记录：
+类型：CNAME
+名称：blog
+内容：alansws.github.io
+代理状态：Proxied 或 DNS only
+
+
+
+
+如果用根域名（如 alansws.xyz）：
+
+添加四条 A 记录：
+类型：A
+名称：@
+内容：185.199.108.153、185.199.109.153、185.199.110.153、185.199.111.153
+代理状态：Proxied 或 DNS only
+
+
+
+
+
+
+第2步：在博客源码的 source 目录下添加 CNAME 文件
+文件名为 CNAME（全大写，无扩展名）
+文件内容为你的自定义域名（如 blog.alansws.xyz 或 alansws.xyz）
+每行一个域名（如有多个）
+
+
+第3步：重新部署博客在博客根目录下执行：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+这样会把 CNAME 文件同步到 GitHub 仓库。
+
+第4步：在 GitHub Pages 仓库设置自定义域名
+打开你的 Alansws.github.io 仓库 → Settings → Pages
+在“Custom domain”处填写你的自定义域名（如 blog.alansws.xyz）
+保存，并勾选“Enforce HTTPS”（强烈推荐）
+等待 DNS 和 HTTPS 生效
+
+
+访问效果
+你可以通过 alansws.github.io 访问
+也可以通过 blog.alansws.xyz（或你设置的自定义域名）访问
+
+
+参考官方文档
+GitHub Pages 配置自定义域名
+Cloudflare DNS 配置说明
+
+
+如有任何细节问题，欢迎随时提问！祝你博客运营顺利，玩得开心！
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+
+User
+现在如果要在博客网站上写文章太复杂了，我得先用IDE打开我的personal-blog文件夹，然后用复杂的命令行指令来完成创建新文档，推送更新等操作。你能够尝试在博客网站上直接添加写作功能吗？
+
+Cursor
+你的需求非常常见：希望能在博客网站上直接写文章、发布内容，而不是每次都用本地编辑器+命令行+git。Hexo 作为静态博客生成器，天生不支持“在线写作+一键发布”，但你有几种可行的解决方案和思路：
+
+方案一：迁移到支持在线写作的博客系统1. 迁移到 WordPress、Typecho、Halo 等动态博客系统
+这些系统自带后台管理和在线写作功能，支持富文本&#x2F;Markdown编辑、图片上传、文章管理等。
+缺点：需要服务器（云主机&#x2F;虚拟主机），维护成本略高。
+
+2. 迁移到 Notion、语雀、BearBlog、Vercel Blog 等现代SaaS平台
+这些平台支持在线写作、自动部署，甚至可以绑定自定义域名。
+适合不想折腾服务器的用户。
+
+
+方案二：为 Hexo 静态博客增加“在线写作”能力Hexo 本身不支持在线写作，但你可以通过以下方式间接实现：
+1. 借助 GitHub 网页端写作
+直接在 GitHub 仓库（personal-blog/source/_posts/）中新建&#x2F;编辑 Markdown 文件。
+配合 GitHub Actions 自动部署（即“推送即发布”）。
+缺点：编辑体验不如专业博客后台，但可以在任何地方用浏览器写作。
+
+实现步骤：
+在 GitHub 仓库网页端点击 Add file → Create new file，写 Markdown 文章，保存到 _posts 目录。
+配置 GitHub Actions 自动部署 Hexo（有现成模板）。
+以后只需在网页端写作，几分钟后自动发布到博客。
+
+
+2. 使用第三方“Hexo 可视化后台”项目有一些开源项目尝试为 Hexo 增加后台管理和在线写作功能，例如：
+
+hexo-admin（可在本地或服务器运行，提供网页后台，支持文章管理、写作、发布）
+
+使用方法简述：
+在博客根目录安装 hexo-admin：npm install hexo-admin --save
+启动 Hexo 本地服务：hexo server
+访问 http://localhost:4000/admin，即可进入后台管理界面，在线写作和管理文章。
+
+
+注意：hexo-admin 只在本地生效，除非你把博客部署到云服务器并开放端口。
+
+
+3. 自己开发或集成在线写作前端
+你可以开发一个简单的前端页面，支持 Markdown 编辑和文章上传，然后通过 GitHub API 或 Gitee API 自动推送到仓库。
+这属于“定制开发”，技术门槛较高，但可以完全满足你的需求。
+
+
+方案三：用云笔记+自动同步
+用 Typora、Obsidian、Notion、语雀等云笔记写作，配合同步脚本自动推送到 Hexo 源码仓库并部署。
+适合喜欢本地写作但又想随时随地访问的用户。
+
+
+推荐方案如果你不想折腾服务器，推荐用“GitHub 网页端写作+GitHub Actions 自动部署”，这样你只需在浏览器里写文章，几分钟后自动发布，非常方便。
+如果你想体验“本地可视化后台”，可以试试 hexo-admin 插件。
+
+你想要哪种方式？
+如果你想要“GitHub 网页端写作+自动发布”方案，我可以帮你配置 GitHub Actions。
+如果你想用 hexo-admin，我可以教你如何安装和使用。
+如果你想迁移到支持在线写作的动态博客系统，也可以帮你规划。
+
+请告诉我你的选择或具体需求，我会一步步帮你实现！
+npm install hexo-admin --save
+
+hexo server
+
+
+User
+目前我们整个博客网站都是基于hexo是吗？那如果完全自己开发博客网站，难点在哪里？
+
+Cursor
+是的，你目前的整个博客网站是完全基于 Hexo 静态博客框架，通过本地写作、生成静态网页、推送到 GitHub Pages 实现在线访问。
+
+如果完全自己开发博客网站，难点在哪里？1. 前端页面开发
+你需要自己设计和实现博客的前端页面（首页、文章页、归档、标签、搜索、评论等）。
+需要掌握 HTML、CSS、JavaScript，或用现代前端框架（如 React、Vue、Svelte）。
+还要考虑响应式设计、SEO 优化、性能优化等。
+
+2. 后端服务开发
+你需要开发后端来管理文章、用户、评论等数据。
+需要选择后端技术栈（Node.js、Python、Java、Go等），并实现 API。
+还要处理用户认证、权限管理、数据安全等问题。
+
+3. 数据存储与管理
+你需要选择并管理数据库（如 MySQL、MongoDB、PostgreSQL等）。
+设计数据表结构，处理数据的增删改查。
+
+4. 文章编辑与发布功能
+需要开发富文本或 Markdown 编辑器，支持图片上传、草稿保存、预览等功能。
+实现文章的发布、修改、删除、定时发布等功能。
+
+5. 评论系统
+需要自己开发评论功能，或集成第三方评论（如 Giscus、Disqus、Valine 等）。
+还要考虑垃圾评论过滤、用户身份认证等。
+
+6. 用户系统（可选）
+如果支持多用户写作，需要开发注册、登录、权限管理等功能。
+
+7. 部署与运维
+需要购买服务器或云服务，部署前后端服务。
+配置 HTTPS、域名、CDN、备份、监控等。
+处理服务器安全、性能、扩展性等问题。
+
+8. 自动化与持续集成
+实现自动化部署、备份、测试等，提高开发和运维效率。
+
+
+总结完全自研博客网站的难点在于：
+
+需要全栈开发能力（前端+后端+数据库+运维）
+需要投入大量时间和精力设计、开发、测试和维护
+需要持续关注安全、性能、可用性等问题
+
+
+适合人群
+适合有一定全栈开发经验、追求高度定制化、愿意持续维护的开发者。
+如果只是想写作、分享内容，建议用 Hexo、WordPress、Halo、Notion、语雀等现成方案，省时省力。
+
+
+你可以选择的方向
+继续用 Hexo 等静态博客，专注内容创作，省心省力。
+迁移到支持在线写作的动态博客系统（如 WordPress、Halo）。
+完全自研，获得极致定制和技术成长，但投入较大。
+
+
+如果你想尝试自研博客网站，我可以帮你规划技术选型、功能模块、开发路线图，甚至提供代码模板。如果你想继续用现成方案，也可以帮你优化和扩展。
+请告诉我你的想法和目标，我会为你量身定制建议！
+
+User
+hexo new post “你的文章标题”与hexo new page about两个命令有什么区别？post文件夹中的md文件和about文件夹中的md文件有什么区别？
+
+Cursor
+你的问题非常好！下面详细为你解答：
+
+1. hexo new post &quot;你的文章标题&quot; 和 hexo new page about 的区别hexo new post &quot;你的文章标题&quot;
+作用：创建一篇“文章”。
+生成位置：source/_posts/ 目录下，会生成一个 Markdown 文件（如 你的文章标题.md）。
+用途：用于日常博客写作，所有文章会自动出现在首页、归档、分类、标签等列表中。
+特性：
+有发布时间、分类、标签等元数据。
+支持归档、标签、分类等功能。
+文章会按时间顺序排列在博客首页和归档页。
+
+
+
+
+hexo new page about
+作用：创建一个“独立页面”。
+生成位置：source/about/index.md（即在 source 目录下新建一个文件夹，里面有 index.md）。
+用途：用于“关于我”、“友链”、“留言板”等独立页面，这些页面不会出现在文章列表中。
+特性：
+没有发布时间、分类、标签等元数据（当然你可以手动加）。
+访问路径通常为 https://你的域名/about/。
+页面内容独立于文章系统，适合做介绍、导航等。
+
+
+
+
+2. _posts 文件夹中的 md 文件 和 about 文件夹中的 md 文件的区别_posts 文件夹中的 md 文件
+都是“文章”。
+会自动被 Hexo 识别为博客内容，出现在首页、归档、分类、标签等页面。
+有发布时间、分类、标签等属性。
+访问路径通常为 https://你的域名/posts/xxxxxx.html（取决于你的永久链接设置）。
+
+about 文件夹中的 md 文件
+是“独立页面”。
+不会出现在文章列表、归档、分类、标签等页面。
+访问路径通常为 https://你的域名/about/。
+适合做“关于我”、“友链”、“自定义页面”等。
+
+
+总结
+文章（post）：用于日常写作，自动归档、分类、标签，出现在博客首页和列表。
+页面（page）：用于独立内容（如关于、友链），不参与文章归档和列表，单独访问。
+
+
+如需进一步了解 Hexo 的内容组织方式或有其他疑问，欢迎随时提问！
+
+User
+   npm install hexo-admin –save命令运行完成了，此时hexo server运行后访问http://localhost:4000/admin，提示Cannot GET &#x2F;admin。
+
+Cursor
+你遇到 Cannot GET /admin 的问题，说明 hexo-admin 插件没有被正确加载或生效。这个问题在 Hexo 用户中较为常见，常见原因和解决办法如下：
+
+1. 检查 hexo-admin 是否安装成功
+在 personal-blog/node_modules/ 目录下，应该有 hexo-admin 文件夹。
+在 personal-blog/package.json 的 dependencies 里应该有 &quot;hexo-admin&quot;。
+
+
+2. 检查 Hexo 版本兼容性
+hexo-admin 对 Hexo 6.x 及以上版本可能存在兼容性问题，建议使用 Hexo 5.x 或 4.x。
+你可以通过 hexo -v 查看当前 Hexo 版本。
+
+
+3. 检查插件是否被正确加载
+打开 personal-blog/_config.yml，无需手动配置 hexo-admin，安装后应自动生效。
+运行 hexo clean &amp;&amp; hexo server，不要用 hexo s 的简写。
+
+
+4. 检查 node_modules 缓存有时 node_modules 缓存问题会导致插件未被正确加载。可以尝试：
+rm -rf node_modulesnpm installhexo clean &amp;&amp; hexo server
+
+
+5. 检查是否有报错信息
+启动 hexo server 时，终端是否有关于 hexo-admin 的报错或警告？
+如果有，把报错信息发给我。
+
+
+6. hexo-admin 兼容性问题解决办法如果你用的是 Hexo 6.x 及以上，建议降级 Hexo 到 5.x，步骤如下：
+npm uninstall hexonpm install hexo@5.4.2 --savehexo clean &amp;&amp; hexo server
+
+
+7. 访问方式
+正确访问地址应为 http://localhost:4000/admin（注意是 /admin，不是 /admin/）。
+如果还是不行，尝试清空浏览器缓存或换个浏览器。
+
+
+8. 其他建议
+hexo-admin 项目已较久未维护，部分新版本 Hexo 可能不兼容。如果你只是想本地可视化管理，建议用 Hexo 5.x。
+如果你需要更现代的可视化后台，可以考虑迁移到支持后台的博客系统（如 Halo、WordPress）。
+
+
+请你按上述方法逐步排查。如果还有问题，请提供：
+你的 Hexo 版本（hexo -v）
+你的 Node.js 版本（node -v）
+运行 hexo server 时的完整终端输出
+
+我会帮你进一步定位和解决！
+rm -rf node_modulesnpm installhexo clean &amp;&amp; hexo server
+
+npm uninstall hexonpm install hexo@5.4.2 --savehexo clean &amp;&amp; hexo server
+
+
+User
+dependencies里没有hexo-admin。我该怎么补上，补上就可以解决问题了是吗？
+
+Cursor
+你发现 package.json 的 dependencies 里没有 &quot;hexo-admin&quot;，说明插件并没有被正确安装或写入依赖。这确实是导致 /admin 无法访问的直接原因之一。
+
+解决方法1. 重新安装 hexo-admin请在 personal-blog 目录下执行：
+npm install hexo-admin --save
+
+
+这条命令会自动把 &quot;hexo-admin&quot; 写入 package.json 的 dependencies，并在 node_modules 里安装插件。
+
+
+2. 检查安装结果
+安装完成后，package.json 的 dependencies 里应该有 &quot;hexo-admin&quot; 这一项。
+node_modules/hexo-admin/ 目录也应该存在。
+
+
+3. 重启 Hexo 服务安装完成后，依次执行：
+hexo cleanhexo server
+
+然后在浏览器访问 http://localhost:4000/admin。
+
+4. 如果依然不行
+检查终端是否有 hexo-admin 相关报错。
+检查 Hexo 版本兼容性（hexo-admin 最好配合 Hexo 5.x 使用，Hexo 7.x 可能不兼容）。
+如果你用的是 Hexo 7.x，建议降级 Hexo 版本（如有需要我可以详细指导）。
+
+
+总结
+先确保 &quot;hexo-admin&quot; 正确写入 dependencies 并安装。
+安装后重启服务，访问 /admin。
+如仍有问题，可能是 Hexo 版本兼容性问题。
+
+
+如有任何报错或疑问，请把终端输出发给我，我会继续帮你解决！
+npm install hexo-admin --save
+
+hexo cleanhexo server
+
+
+User
+我使用的确实是hexo 7.x，所以需要降级吗，具体该怎么做，降级后会影响其他内容吗？以及我能否手动添加hexo-admin版本到dependencies中呢？但我如何查看hexo-admin版本呢
+
+Cursor
+你的问题非常专业，下面详细为你解答：
+
+1. 是否需要降级 Hexo？是的，建议降级。hexo-admin 插件长期未维护，官方兼容性只保证到 Hexo 5.x，在 Hexo 6.x&#x2F;7.x 上大概率无法正常使用（即使手动加依赖也不行）。
+
+2. 降级 Hexo 的具体步骤（1）卸载当前 Hexo 7.x在 personal-blog 目录下执行：
+npm uninstall hexo
+
+（2）安装 Hexo 5.x（推荐 5.4.2，兼容性最好）npm install hexo@5.4.2 --save
+
+（3）重新安装 hexo-adminnpm install hexo-admin --save
+
+（4）检查 package.jsondependencies 里应该有：
+&quot;hexo&quot;: &quot;^5.4.2&quot;,&quot;hexo-admin&quot;: &quot;^2.3.0&quot;
+（hexo-admin 最新版一般是 2.3.0）
+（5）重启服务hexo cleanhexo server
+然后访问 http://localhost:4000/admin
+
+3. 降级会影响其他内容吗？
+不会影响你的文章、页面、主题等内容，这些都在 source/ 和 themes/ 目录下，和 Hexo 版本无关。
+可能有极少数 Hexo 7.x 新特性&#x2F;新插件在 5.x 不兼容，但主流插件和 NexT 主题都支持 5.x。
+你可以先备份整个 personal-blog 文件夹，以防万一。
+
+
+4. 能否手动添加 hexo-admin 到 dependencies？
+可以手动加，但如果 Hexo 7.x 本身不兼容 hexo-admin，依然无法使用。
+推荐用 npm install hexo-admin --save 自动写入，避免版本号写错。
+
+
+5. 如何查看 hexo-admin 最新版本？
+你可以在 npm hexo-admin 页面 查看最新版本（目前为 2.3.0）。
+也可以在终端运行：npm view hexo-admin version
+
+
+总结操作流程
+卸载 Hexo 7.x：npm uninstall hexo
+安装 Hexo 5.4.2：npm install hexo@5.4.2 --save
+安装 hexo-admin：npm install hexo-admin --save
+重启服务，访问 /admin
+
+
+如有任何报错或疑问，请把终端输出发给我，我会继续帮你解决！降级后你的博客内容不会丢失，请放心操作。
+npm uninstall hexo
+
+npm install hexo@5.4.2 --save
+
+npm install hexo-admin --save
+
+&quot;hexo&quot;: &quot;^5.4.2&quot;,&quot;hexo-admin&quot;: &quot;^2.3.0&quot;
+
+hexo cleanhexo server
+
+npm view hexo-admin version
+
+
+User
+目前博客网站一进入就是一篇文章，没有首页吗？以及我想修改主题该怎么修改呢？或者单就这一个主题，该怎么样让主题更专业更好看呢，目前主题还只是一个毛坯。
+
+Cursor
+你的问题很有代表性，下面详细为你解答：
+
+1. 为什么一进入博客就是一篇文章，没有首页？Hexo 默认首页其实是“文章列表页”，会自动展示所有文章的摘要或标题。如果你只看到一篇文章，可能是因为目前你的 _posts 目录下只有一篇文章，或者主题配置了“单栏模式”。
+解决方法：
+多写几篇文章：在 source/_posts/ 目录下多创建几个 Markdown 文件，首页就会自动变成文章列表。
+检查主题配置：部分主题有“单栏&#x2F;多栏”或“首页自定义内容”设置，可以在 themes/next/_config.yml 里调整。
+
+
+2. 如何切换&#x2F;修改主题？（1）切换主题
+你可以在 Hexo 主题官网 挑选喜欢的主题。
+
+下载主题到 themes/ 目录下（如 themes/next、themes/landscape）。
+
+修改 personal-blog/_config.yml 里的 theme: 字段为你想用的主题名。
+
+重新生成并部署：
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+（2）NexT 主题美化与高级配置NexT 是 Hexo 最流行、最强大的主题之一，支持高度自定义。你可以通过修改 themes/next/_config.yml 来美化和增强你的博客。
+
+3. 让 NexT 主题更专业更好看的方法1. 选择 NexT 的不同 Scheme（配色风格）在 themes/next/_config.yml 里找到：
+scheme: Muse  # 可选：Muse、Mist、Pisces、Gemini
+
+推荐 Muse（默认）、Pisces（卡片式）、Gemini（极简风）。
+
+2. 启用&#x2F;美化首页大图、个人信息
+配置 avatar、banner、social 等字段，展示你的头像、社交链接、简介。
+可以自定义首页大图、欢迎语等。
+
+3. 启用文章摘要、封面图
+在文章头部加 cover: 字段，或在主题配置中开启摘要功能。
+
+4. 启用&#x2F;美化侧边栏
+配置侧边栏内容，如分类、标签、最新文章、公告等。
+
+5. 启用夜间模式、代码高亮、数学公式、图表等
+NexT 支持夜间模式、丰富的代码高亮、数学公式（MathJax&#x2F;Katex）、Mermaid 流程图等。
+
+6. 启用站点统计、SEO、RSS、评论、搜索等功能
+在 themes/next/_config.yml 里配置相关插件和参数。
+
+7. 更换字体、配色、背景
+可以自定义字体、主色调、背景图片等，让博客更有个性。
+
+
+4. NexT 主题美化推荐文档
+NexT 官方文档（中文）
+NexT 配置示例与美化教程（知乎）
+NexT 主题美化合集（CSDN）
+
+
+5. 总结
+首页只显示一篇文章，通常是因为文章太少或主题配置问题，多写几篇文章即可。
+主题可以随时切换，也可以深度美化当前 NexT 主题。
+NexT 主题极其强大，建议多参考官方文档和社区美化教程，逐步调整出你喜欢的风格。
+
+
+如需具体某一项美化或功能配置的详细操作（如添加首页大图、社交图标、夜间模式等），请告诉我你的需求，我可以手把手教你！
+hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy
+
+scheme: Muse  # 可选：Muse、Mist、Pisces、Gemini
+
+]]></content>
+  </entry>
+  <entry>
+    <title>大学课程1</title>
+    <url>/posts/42350.html</url>
+    <content><![CDATA[
+[up主专用，视频内嵌代码贴在这]
+
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio (height/width = 9/16 * 100%) */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+]]></content>
+      <categories>
+        <category>大学</category>
+        <category>大学课程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/posts/63785.html</url>
+    <content><![CDATA[大家好，这是我的第一篇博客！如果你希望，别忘了按赞订阅！]]></content>
+  </entry>
+  <entry>
+    <title>第一篇博客文章</title>
+    <url>/posts/32733.html</url>
+    <content><![CDATA[
+
+
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio (height/width = 9/16 * 100%) */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+]]></content>
+      <categories>
+        <category>技术类文章</category>
+      </categories>
+      <tags>
+        <tag>标签1</tag>
+        <tag>标签2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大学生活1</title>
+    <url>/posts/5117.html</url>
+    <content><![CDATA[
+[up主专用，视频内嵌代码贴在这]
+
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio (height/width = 9/16 * 100%) */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+]]></content>
+      <categories>
+        <category>大学</category>
+        <category>大学生活</category>
+      </categories>
+  </entry>
+</search>
